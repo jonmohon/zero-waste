@@ -63,6 +63,63 @@ src/
 - **Utilities/hooks**: camelCase (`formatPrice`, `useCart`)
 - **Route folders**: kebab-case matching URL slugs
 
+## Documentation Requirements (Mandatory)
+
+Every piece of code must be documented. This is how we prevent drift — the code explains itself so the next person (or AI) doesn't have to guess intent.
+
+### Components
+- **JSDoc block above every component** explaining what it does, where it's used, and what props it expects.
+- **Inline comments for non-obvious logic** — conditional rendering, derived state, Medusa-specific workarounds.
+- Example:
+  ```tsx
+  /**
+   * ProductCard — displays a single product in grid/list views.
+   * Used in: CollectionPage, SearchResults, FeaturedProducts
+   *
+   * @param product - Medusa Product object (must include variants + prices)
+   * @param priority - if true, image loads eagerly (use for above-the-fold cards)
+   */
+  ```
+
+### Utility Functions (`lib/`)
+- **JSDoc with `@param`, `@returns`, and `@example`** on every exported function.
+- If the function handles a Medusa-specific edge case, document *why* with a comment.
+- Example:
+  ```ts
+  /**
+   * Formats a Medusa money amount into a display string.
+   * Medusa stores prices in smallest currency unit (cents for USD).
+   *
+   * @param amount - price in smallest unit (e.g. 1999 = $19.99)
+   * @param currencyCode - ISO 4217 code (e.g. "usd")
+   * @returns formatted string (e.g. "$19.99")
+   *
+   * @example
+   * formatPrice(1999, "usd") // "$19.99"
+   */
+  ```
+
+### Route Files (`page.tsx`, `layout.tsx`)
+- **Top-of-file comment** explaining the route, what data it fetches, and its caching/revalidation strategy.
+- Example:
+  ```tsx
+  // Route: /products/[handle]
+  // Fetches a single product by handle via Medusa SDK.
+  // Statically generated at build time, revalidates every 60s (ISR).
+  ```
+
+### API Route Handlers
+- **Document the endpoint, method, request body, and response shape.**
+- Note any webhooks or external callers.
+
+### Types
+- **Exported types/interfaces get a JSDoc description.** Don't just name it — say what it represents and where it's used.
+
+### When NOT to Comment
+- Don't comment self-evident Tailwind markup (`{/* this is a flex container */}` — no).
+- Don't restate TypeScript types in comments (`// takes a string` above a `name: string` param — no).
+- Don't leave TODO/FIXME without a name and date: `// TODO(jon 2026-04-01): handle multi-currency`.
+
 ## Rules
 
 1. **Don't add dependencies without justification.** Every new package is tech debt. Tailwind, Medusa SDK, and Next.js cover 95% of needs.
@@ -72,3 +129,4 @@ src/
 5. **Keep components under 150 lines.** If it's longer, split it — but only along real boundaries, not arbitrary ones.
 6. **Test with Lighthouse before PRs.** Performance score must stay above 90.
 7. **Commit messages**: imperative mood, lowercase, no period. Example: `add product grid to collection page`
+8. **All code must be documented** per the Documentation Requirements above. Undocumented code should not be merged.
