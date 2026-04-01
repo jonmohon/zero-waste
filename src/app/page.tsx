@@ -5,6 +5,7 @@
 // Server component that fetches products at request time.
 // Revalidates every 60 seconds (ISR).
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/product/product-card";
 import { NewsletterSignup } from "@/components/layout/newsletter-signup";
@@ -17,13 +18,14 @@ export const revalidate = 60;
  * Collection card placeholder images — maps category names to earthy
  * background colors for visual distinction before real images are loaded.
  */
-const COLLECTION_COLORS: Record<string, string> = {
-  Kitchen: "bg-brand-100",
-  Bathroom: "bg-brand-50",
-  Beauty: "bg-brand-200",
-  "Cleaning Products": "bg-brand-100",
-  "Dental Care": "bg-brand-50",
-  "Gifts & Kits": "bg-brand-200",
+/** Maps category names to their collection images in /public/images/ */
+const COLLECTION_IMAGES: Record<string, string> = {
+  Kitchen: "/images/collection-kitchen.webp",
+  Bathroom: "/images/collection-bathroom.webp",
+  Beauty: "/images/collection-beauty.webp",
+  "Cleaning Products": "/images/collection-cleaning.webp",
+  "Dental Care": "/images/collection-dental.webp",
+  "Gifts & Kits": "/images/collection-beauty.webp",
 };
 
 /**
@@ -94,10 +96,16 @@ export default async function HomePage() {
   return (
     <>
       {/* ===== HERO SECTION ===== */}
-      <section className="relative bg-brand-50">
+      <section className="relative bg-brand-50 overflow-hidden">
         <div className="mx-auto flex max-w-7xl flex-col items-center px-4 py-20 text-center sm:px-6 sm:py-28 lg:py-36 lg:px-8">
-          {/* Placeholder for hero image area */}
-          <div className="absolute inset-0 bg-brand-50" />
+          {/* Hero background image */}
+          <Image
+            src="/images/hero.webp"
+            alt="Zero waste products"
+            fill
+            className="object-cover opacity-20"
+            priority
+          />
           <div className="relative z-10">
             <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl">
               It starts with a small change
@@ -127,12 +135,22 @@ export default async function HomePage() {
               href={`/collections/${col.handle}`}
               className="group"
             >
-              <div
-                className={`flex aspect-[4/3] items-center justify-center rounded-lg ${COLLECTION_COLORS[col.name] ?? "bg-brand-100"} transition-shadow duration-200 group-hover:shadow-md`}
-              >
-                <span className="text-lg font-semibold text-neutral-700 transition-colors group-hover:text-brand-700">
-                  {col.name}
-                </span>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-brand-100">
+                {COLLECTION_IMAGES[col.name] && (
+                  <Image
+                    src={COLLECTION_IMAGES[col.name]}
+                    alt={col.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                )}
+                {/* Overlay with category name */}
+                <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/50 to-transparent p-4">
+                  <span className="text-lg font-semibold text-white">
+                    {col.name}
+                  </span>
+                </div>
               </div>
             </Link>
           ))}

@@ -11,6 +11,7 @@
  * composed inside this one.
  */
 import Link from "next/link";
+import Image from "next/image";
 import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 
@@ -34,12 +35,16 @@ export function Header() {
           {/* Mobile menu toggle (left side on mobile) */}
           <MobileMenu links={[...NAV_LINKS]} />
 
-          {/* Brand logo — script-style font for handwritten feel */}
-          <Link
-            href="/"
-            className="font-script text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl lg:text-3xl"
-          >
-            The Zero Waste Store
+          {/* Brand logo — original store logo image */}
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/logo.webp"
+              alt="The Zero Waste Store"
+              width={160}
+              height={160}
+              className="h-12 w-auto sm:h-14 lg:h-16"
+              priority
+            />
           </Link>
 
           {/* Desktop navigation */}
