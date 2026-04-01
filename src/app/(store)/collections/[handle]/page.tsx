@@ -21,8 +21,11 @@ export async function generateMetadata({
 }: CollectionPageProps): Promise<Metadata> {
   try {
     const { handle } = await params;
+    const decodedHandle = decodeURIComponent(handle);
     const categories = (await getCategories()) as ProductCategory[];
-    const category = categories.find((c) => c.handle === handle);
+    const category = categories.find(
+      (c) => c.handle === handle || c.handle === decodedHandle
+    );
 
     return {
       title: category?.name ?? "Collection",
@@ -42,7 +45,11 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
   ]);
 
   const categories = allCategories as ProductCategory[];
-  const category = categories.find((c: ProductCategory) => c.handle === handle);
+  /* Decode the handle in case the URL was percent-encoded (e.g. bath-%26-body → bath-&-body) */
+  const decodedHandle = decodeURIComponent(handle);
+  const category = categories.find(
+    (c: ProductCategory) => c.handle === handle || c.handle === decodedHandle
+  );
   if (!category || !region) notFound();
 
   const { products } = await getProductsByCategory(category.id, region.id);

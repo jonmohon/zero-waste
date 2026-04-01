@@ -76,7 +76,9 @@ export async function getProductByHandle(handle: string, regionId: string) {
  * @returns array of category objects
  */
 export async function getCategories() {
-  const { product_categories } = await medusa.store.category.list();
+  const { product_categories } = await medusa.store.category.list({
+    fields: "id,name,handle,description,is_active",
+  });
   return product_categories;
 }
 
