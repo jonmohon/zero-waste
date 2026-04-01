@@ -38,13 +38,18 @@ export function AddressList() {
   }
 
   if (loading) {
-    return <p className="text-neutral-500">Loading addresses...</p>;
+    return (
+      <div className="flex items-center gap-3 py-8">
+        <div className="h-5 w-5 animate-spin rounded-full border-2 border-neutral-200 border-t-accent" />
+        <p className="text-sm text-text-secondary">Loading addresses...</p>
+      </div>
+    );
   }
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-bold text-neutral-900">Addresses</h2>
+        <h2 className="font-heading text-lg font-extrabold text-primary">Addresses</h2>
         {!showForm && (
           <Button size="sm" onClick={() => setShowForm(true)}>
             Add Address
@@ -57,23 +62,23 @@ export function AddressList() {
       )}
 
       {addresses.length === 0 && !showForm && (
-        <p className="text-sm text-neutral-500">No addresses saved yet.</p>
+        <p className="text-sm text-text-secondary">No addresses saved yet.</p>
       )}
 
       <div className="grid gap-4 sm:grid-cols-2">
         {addresses.map((addr) => (
           <Card key={addr.id}>
-            <p className="font-medium text-neutral-900">
+            <p className="font-heading text-sm font-bold text-primary">
               {addr.first_name} {addr.last_name}
             </p>
-            {addr.company && <p className="text-sm text-neutral-600">{addr.company}</p>}
-            <p className="text-sm text-neutral-600">{addr.address_1}</p>
-            {addr.address_2 && <p className="text-sm text-neutral-600">{addr.address_2}</p>}
-            <p className="text-sm text-neutral-600">
+            {addr.company && <p className="text-sm text-text-secondary">{addr.company}</p>}
+            <p className="text-sm text-text-secondary">{addr.address_1}</p>
+            {addr.address_2 && <p className="text-sm text-text-secondary">{addr.address_2}</p>}
+            <p className="text-sm text-text-secondary">
               {addr.city}{addr.province ? `, ${addr.province}` : ""} {addr.postal_code}
             </p>
-            <p className="text-sm text-neutral-600">{addr.country_code?.toUpperCase()}</p>
-            {addr.phone && <p className="text-sm text-neutral-500">{addr.phone}</p>}
+            <p className="text-sm text-text-secondary">{addr.country_code?.toUpperCase()}</p>
+            {addr.phone && <p className="text-sm text-text-secondary">{addr.phone}</p>}
           </Card>
         ))}
       </div>

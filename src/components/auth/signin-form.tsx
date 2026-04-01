@@ -4,6 +4,7 @@
  *
  * On successful login, redirects the customer to /account.
  * Displays inline error messages on failure.
+ * Styled with refined typography and spacing for a premium feel.
  */
 "use client";
 
@@ -37,11 +38,20 @@ export function SigninForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto w-full max-w-md space-y-5">
-      <h1 className="text-2xl font-bold text-neutral-900">Sign In</h1>
+    <form onSubmit={handleSubmit} className="mx-auto w-full max-w-md space-y-6">
+      <div>
+        <h1 className="font-heading text-2xl font-extrabold tracking-tight text-primary">
+          Sign In
+        </h1>
+        <p className="mt-1.5 text-sm text-text-secondary">
+          Welcome back. Enter your credentials below.
+        </p>
+      </div>
 
       {error && (
-        <p className="rounded-lg bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p>
+        <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </p>
       )}
 
       <Input
@@ -67,13 +77,19 @@ export function SigninForm() {
         {loading ? "Signing in..." : "Sign In"}
       </Button>
 
-      <div className="flex flex-col gap-2 text-center text-sm text-neutral-600">
-        <Link href="/reset-password" className="hover:text-brand-600">
+      <div className="flex flex-col gap-2.5 text-center text-sm text-text-secondary">
+        <Link
+          href="/reset-password"
+          className="transition-colors duration-200 hover:text-accent"
+        >
           Forgot your password?
         </Link>
         <p>
           Don&apos;t have an account?{" "}
-          <Link href="/signup" className="font-medium text-brand-600 hover:text-brand-700">
+          <Link
+            href="/signup"
+            className="font-semibold text-accent transition-colors duration-200 hover:text-accent-hover"
+          >
             Create one
           </Link>
         </p>

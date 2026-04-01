@@ -3,7 +3,7 @@
  * Used in: Header right-side actions area.
  *
  * Renders a user icon linking to /account when authenticated, or
- * a "Sign In" text link to /signin when not.
+ * a "Sign In" text link to /signin when not. Styled to match header aesthetic.
  */
 "use client";
 
@@ -19,10 +19,16 @@ export function AuthNav() {
     return (
       <Link
         href="/account"
-        className="flex items-center text-neutral-600 transition-colors hover:text-neutral-900"
+        className="group flex items-center text-text-secondary transition-colors duration-200 hover:text-primary"
         aria-label="My account"
       >
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <svg
+          className="h-5 w-5 transition-transform duration-200 group-hover:scale-105"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -36,7 +42,7 @@ export function AuthNav() {
   return (
     <Link
       href="/signin"
-      className="text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900"
+      className="hidden font-heading text-[11px] font-semibold uppercase tracking-[0.08em] text-text-secondary transition-colors duration-200 hover:text-primary sm:inline-flex"
     >
       Sign In
     </Link>

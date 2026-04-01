@@ -2,8 +2,8 @@
  * ProductCard — displays a single product in grid/list views.
  * Used in: HomePage featured products, CollectionPage, SearchResults.
  *
- * Redesigned to match the artifact card style with rounded corners,
- * hover lift effect, and accent green price color.
+ * Redesigned with premium card styling: subtle shadow, smooth hover lift,
+ * image zoom, and an overlay with "View Product" action.
  *
  * @param product - Medusa Product object (must include variants with calculated_price)
  * @param priority - if true, image loads eagerly (use for above-the-fold cards)
@@ -44,17 +44,17 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   return (
     <Link
       href={`/products/${product.handle}`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-black/7 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)]"
     >
       {/* Product image with fixed aspect ratio to prevent layout shift */}
-      <div className="relative aspect-square overflow-hidden bg-neutral-100">
+      <div className="relative aspect-square overflow-hidden bg-surface">
         {imageUrl ? (
           <Image
             src={imageUrl}
             alt={product.title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.07]"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
             priority={priority}
           />
         ) : (
@@ -63,20 +63,20 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           </div>
         )}
         {/* Hover overlay */}
-        <div className="absolute inset-0 flex items-center justify-center bg-primary/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <span className="translate-y-2 rounded-lg bg-white px-4 py-2 font-heading text-[10.5px] font-bold uppercase tracking-[0.08em] text-primary shadow-md transition-transform duration-300 group-hover:translate-y-0">
+        <div className="absolute inset-0 flex items-center justify-center bg-primary/35 opacity-0 transition-all duration-300 group-hover:opacity-100">
+          <span className="translate-y-3 rounded-lg bg-white px-5 py-2.5 font-heading text-[10px] font-bold uppercase tracking-[0.1em] text-primary shadow-lg transition-all duration-300 group-hover:translate-y-0">
             View Product
           </span>
         </div>
       </div>
 
       {/* Product info */}
-      <div className="flex flex-1 flex-col gap-1 border-t border-black/5 p-3 lg:p-4">
-        <h3 className="font-heading text-xs font-bold leading-snug text-primary transition-colors duration-200 group-hover:text-accent-hover">
+      <div className="flex flex-1 flex-col gap-2 p-4 lg:p-5">
+        <h3 className="font-heading text-[13px] font-bold leading-snug text-primary transition-colors duration-200 group-hover:text-accent">
           {product.title}
         </h3>
         {price && (
-          <p className="mt-auto font-heading text-sm font-extrabold text-accent">
+          <p className="mt-auto font-heading text-base font-extrabold text-accent">
             {price}
           </p>
         )}

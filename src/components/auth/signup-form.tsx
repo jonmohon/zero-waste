@@ -4,6 +4,7 @@
  *
  * Validates passwords match on the client before calling the register action.
  * On success, redirects to /account.
+ * Styled with refined typography for consistency with signin form.
  */
 "use client";
 
@@ -43,11 +44,20 @@ export function SignupForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto w-full max-w-md space-y-5">
-      <h1 className="text-2xl font-bold text-neutral-900">Create Account</h1>
+    <form onSubmit={handleSubmit} className="mx-auto w-full max-w-md space-y-6">
+      <div>
+        <h1 className="font-heading text-2xl font-extrabold tracking-tight text-primary">
+          Create Account
+        </h1>
+        <p className="mt-1.5 text-sm text-text-secondary">
+          Join the zero-waste community today.
+        </p>
+      </div>
 
       {error && (
-        <p className="rounded-lg bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p>
+        <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </p>
       )}
 
       <Input
@@ -82,9 +92,12 @@ export function SignupForm() {
         {loading ? "Creating account..." : "Create Account"}
       </Button>
 
-      <p className="text-center text-sm text-neutral-600">
+      <p className="text-center text-sm text-text-secondary">
         Already have an account?{" "}
-        <Link href="/signin" className="font-medium text-brand-600 hover:text-brand-700">
+        <Link
+          href="/signin"
+          className="font-semibold text-accent transition-colors duration-200 hover:text-accent-hover"
+        >
           Sign in
         </Link>
       </p>

@@ -37,7 +37,7 @@ export function BrandStory() {
   return (
     <>
       {/* ===== HERO BANNER ===== */}
-      <section className="relative grid h-[480px] w-full grid-cols-1 overflow-hidden sm:h-[560px] sm:grid-cols-2">
+      <section className="relative grid h-[500px] w-full grid-cols-1 overflow-hidden sm:h-[580px] sm:grid-cols-2">
         {/* Left image panel */}
         <div className="relative overflow-hidden">
           <Image
@@ -117,16 +117,9 @@ export function BrandStory() {
       </section>
 
       {/* ===== PHILOSOPHY CARDS ===== */}
-      <section className="relative overflow-hidden bg-surface-warm px-5 py-16 md:px-16 lg:py-20 lg:px-16">
-        {/* Subtle dot texture */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(rgba(74,170,66,0.07) 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-          }}
-        />
+      <section className="relative overflow-hidden bg-surface-warm px-5 py-16 md:px-16 lg:py-24 lg:px-16">
+        {/* Subtle dot texture — using a background gradient pattern */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(74,170,66,0.06)_1px,transparent_1px)] bg-[length:28px_28px]" />
 
         {/* Section header */}
         <div className="relative z-10 mb-14 text-center">

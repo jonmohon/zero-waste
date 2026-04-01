@@ -101,7 +101,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
   const gridProducts = hasMedusaProducts ? products.slice(1, 6) : [];
 
   return (
-    <section className="w-full bg-white px-5 py-10 md:px-10 lg:px-16 lg:py-18">
+    <section className="w-full bg-white px-5 py-14 md:px-10 lg:px-16 lg:py-20">
       {/* Top header row */}
       <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-start md:justify-between md:gap-10">
         <div className="flex-1">
@@ -130,7 +130,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
       </div>
 
       {/* Divider */}
-      <div className="mb-10 h-px bg-black/8" />
+      <div className="mb-10 h-px bg-neutral-100" />
 
       {/* Main content grid */}
       <div className="grid gap-5 md:grid-cols-2">
@@ -234,7 +234,7 @@ function MedusaSmallCard({
   return (
     <Link
       href={`/products/${product.handle}`}
-      className={`group flex overflow-hidden rounded-xl border border-black/7 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${wide ? "col-span-2 max-h-28 flex-row" : "flex-col"}`}
+      className={`group flex overflow-hidden rounded-xl border border-black/5 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_10px_28px_rgba(0,0,0,0.1)] ${wide ? "col-span-2 max-h-28 flex-row" : "flex-col"}`}
     >
       <div
         className={`relative overflow-hidden bg-neutral-100 ${wide ? "w-36 shrink-0" : "aspect-square"}`}
@@ -337,7 +337,7 @@ function FallbackSmallCard({
   return (
     <Link
       href={`/products/${card.handle}`}
-      className={`group flex overflow-hidden rounded-xl border border-black/7 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${card.wide ? "col-span-2 max-h-28 flex-row" : "flex-col"}`}
+      className={`group flex overflow-hidden rounded-xl border border-black/5 bg-white shadow-[0_2px_10px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_10px_28px_rgba(0,0,0,0.1)] ${card.wide ? "col-span-2 max-h-28 flex-row" : "flex-col"}`}
     >
       <div
         className={`relative overflow-hidden bg-neutral-100 ${card.wide ? "w-36 shrink-0" : "aspect-square"}`}

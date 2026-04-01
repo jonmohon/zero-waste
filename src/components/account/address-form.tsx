@@ -57,10 +57,10 @@ export function AddressForm({ onComplete, onCancel }: AddressFormProps) {
   return (
     <Card>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <h3 className="text-lg font-bold text-neutral-900">New Address</h3>
+        <h3 className="font-heading text-lg font-extrabold text-primary">New Address</h3>
 
         {error && (
-          <p className="rounded-lg bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p>
+          <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>
         )}
 
         <div className="grid gap-4 sm:grid-cols-2">

@@ -215,7 +215,7 @@ export function ShopCollections() {
               <Link
                 key={col.href}
                 href={col.href}
-                className="group relative flex w-full shrink-0 flex-col overflow-hidden rounded-2xl border border-black/7 bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                className="group relative flex w-full shrink-0 flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_14px_36px_rgba(0,0,0,0.1)]"
                 style={{
                   flex: `0 0 calc(25% - 14px)`,
                   minWidth: 0,
@@ -261,7 +261,7 @@ export function ShopCollections() {
                   {/* Quick Shop button */}
                   <button
                     type="button"
-                    className="mt-3 w-full rounded-lg border-[1.5px] border-primary/20 py-2.5 font-heading text-[10.5px] font-bold uppercase tracking-[0.1em] text-primary transition-all duration-200 hover:-translate-y-px hover:border-primary hover:bg-primary hover:text-white"
+                    className="mt-3 w-full rounded-xl border-[1.5px] border-primary/12 py-2.5 font-heading text-[10px] font-bold uppercase tracking-[0.1em] text-primary transition-all duration-200 hover:-translate-y-px hover:border-primary hover:bg-primary hover:text-white hover:shadow-md"
                   >
                     Quick Shop
                   </button>

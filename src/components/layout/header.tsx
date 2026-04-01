@@ -1,10 +1,10 @@
 /**
  * Header — top navigation bar rendered on every page via the root layout.
- * Redesigned to match the artifact aesthetic with the new color palette:
+ * Redesigned to match a premium sustainable brand aesthetic with
  * deep green primary, accent green, and Montserrat typography.
  *
- * Server component — the mobile menu is a separate client component
- * composed inside this one.
+ * Server component — the mobile menu and auth nav are separate client
+ * components composed inside this one.
  */
 import Link from "next/link";
 import Image from "next/image";
@@ -27,8 +27,8 @@ export function Header() {
     <header className="sticky top-0 z-50">
       <AnnouncementBar />
 
-      <div className="border-b border-primary/8 bg-white/95 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8">
+      <div className="border-b border-primary/6 bg-white/97 shadow-[0_1px_3px_rgba(0,0,0,0.04)] backdrop-blur-xl">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-[72px] lg:px-8">
           {/* Mobile menu toggle (left side on mobile) */}
           <MobileMenu
             links={[
@@ -38,24 +38,27 @@ export function Header() {
           />
 
           {/* Brand logo */}
-          <Link href="/" className="flex items-center">
+          <Link
+            href="/"
+            className="flex items-center transition-opacity duration-200 hover:opacity-80"
+          >
             <Image
               src="/images/logo.webp"
               alt="The Zero Waste Store"
               width={160}
               height={160}
-              className="h-12 w-auto sm:h-14 lg:h-16"
+              className="h-11 w-auto sm:h-13 lg:h-[60px]"
               priority
             />
           </Link>
 
           {/* Desktop navigation */}
-          <nav className="hidden items-center gap-6 lg:flex">
+          <nav className="hidden items-center gap-7 lg:flex">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-heading text-[11px] font-semibold uppercase tracking-[0.1em] text-text-secondary transition-colors duration-200 hover:text-accent"
+                className="relative font-heading text-[11px] font-semibold uppercase tracking-[0.1em] text-text-secondary transition-colors duration-200 hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[1.5px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
               </Link>
@@ -63,15 +66,15 @@ export function Header() {
           </nav>
 
           {/* Right-side actions: auth + cart */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <AuthNav />
             <Link
               href="/cart"
-              className="flex items-center gap-1 text-text-secondary transition-colors hover:text-primary"
+              className="group relative flex items-center gap-1 text-text-secondary transition-colors duration-200 hover:text-primary"
               aria-label="Shopping cart"
             >
               <svg
-                className="h-5 w-5"
+                className="h-5 w-5 transition-transform duration-200 group-hover:scale-105"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

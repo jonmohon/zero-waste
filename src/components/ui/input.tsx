@@ -1,9 +1,9 @@
 /**
  * Input — styled text input used in forms, search, and checkout.
- * Used in: Search bar, checkout form, newsletter signup.
+ * Used in: Search bar, checkout form, newsletter signup, auth forms.
  *
- * Wraps a native <input> with consistent styling. Supports an
- * optional label rendered above the input.
+ * Wraps a native <input> with consistent styling and smooth focus transitions.
+ * Supports an optional label rendered above the input.
  *
  * @param label - optional label text displayed above the input
  * @param id - HTML id, also used as the label's `htmlFor`
@@ -16,19 +16,23 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export function Input({ label, id, className, ...props }: InputProps) {
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-2">
       {label && (
-        <label htmlFor={id} className="text-sm font-medium text-neutral-700">
+        <label
+          htmlFor={id}
+          className="font-heading text-[11px] font-bold uppercase tracking-[0.08em] text-primary"
+        >
           {label}
         </label>
       )}
       <input
         id={id}
         className={cn(
-          "rounded-lg border border-neutral-300 px-4 py-2.5 text-base text-neutral-900",
+          "rounded-xl border border-neutral-200 bg-white px-4 py-3 text-sm text-primary",
           "placeholder:text-neutral-400",
-          "focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none",
-          "transition-colors duration-150",
+          "focus:border-accent focus:ring-2 focus:ring-accent/15 focus:outline-none",
+          "transition-all duration-200",
+          "hover:border-neutral-300",
           className
         )}
         {...props}

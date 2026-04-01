@@ -2,6 +2,7 @@
  * NewsletterSignup — email subscription form displayed on the homepage.
  * Collects email addresses for marketing updates.
  * Currently a visual-only form — backend integration to be added.
+ * Premium styling with brand colors and refined typography.
  *
  * Client component because it handles form state and submission.
  */
@@ -22,23 +23,34 @@ export function NewsletterSignup() {
   }
 
   return (
-    <section className="bg-brand-500 py-14">
+    <section className="bg-gradient-to-br from-primary via-primary-light to-primary py-16 lg:py-20">
       <div className="mx-auto max-w-xl px-4 text-center sm:px-6">
-        <h2 className="text-2xl font-bold text-white sm:text-3xl">
-          Subscribe to get our latest updates
+        <div className="mb-5 flex items-center justify-center gap-2.5 font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
+          <span className="h-0.5 w-7 rounded-full bg-accent/50" />
+          Stay in the Loop
+          <span className="h-0.5 w-7 rounded-full bg-accent/50" />
+        </div>
+
+        <h2 className="font-serif text-2xl font-bold italic text-white sm:text-3xl lg:text-4xl">
+          Subscribe for Eco Updates
         </h2>
-        <p className="mt-3 text-sm text-white/80">
+        <p className="mt-3 text-sm leading-relaxed text-white/55">
           Join our community for eco tips, new arrivals, and exclusive discounts.
         </p>
 
         {submitted ? (
-          <p className="mt-6 text-lg font-medium text-white">
-            Thank you for subscribing!
-          </p>
+          <div className="mt-8 rounded-xl bg-white/10 px-6 py-4 backdrop-blur-sm">
+            <p className="font-heading text-sm font-bold text-white">
+              Thank you for subscribing!
+            </p>
+            <p className="mt-1 text-xs text-white/60">
+              You&apos;ll receive eco tips and offers in your inbox soon.
+            </p>
+          </div>
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-0"
+            className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-0"
           >
             <input
               type="email"
@@ -46,11 +58,11 @@ export function NewsletterSignup() {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 rounded-lg border-0 px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-white sm:rounded-r-none"
+              className="flex-1 rounded-xl border-0 bg-white px-5 py-3.5 text-sm text-primary placeholder-neutral-400 shadow-lg focus:outline-none focus:ring-2 focus:ring-accent/30 sm:rounded-r-none"
             />
             <button
               type="submit"
-              className="rounded-lg bg-neutral-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-800 sm:rounded-l-none"
+              className="rounded-xl bg-accent px-6 py-3.5 font-heading text-xs font-bold uppercase tracking-[0.08em] text-white shadow-lg transition-all duration-200 hover:bg-accent-hover sm:rounded-l-none"
             >
               Subscribe
             </button>

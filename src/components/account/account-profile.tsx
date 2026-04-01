@@ -4,6 +4,7 @@
  *
  * Toggles between a read-only view and an edit form. Saves changes
  * via updateCustomer() and refreshes the auth context on success.
+ * Premium card styling with refined typography.
  */
 "use client";
 
@@ -12,7 +13,6 @@ import { useAuth } from "@/components/auth/auth-provider";
 import { updateCustomer } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card } from "@/components/ui/card";
 
 export function AccountProfile() {
   const { customer, refreshCustomer } = useAuth();
@@ -47,12 +47,16 @@ export function AccountProfile() {
 
   if (editing) {
     return (
-      <Card>
-        <form onSubmit={handleSave} className="space-y-4">
-          <h2 className="text-lg font-bold text-neutral-900">Edit Profile</h2>
+      <div className="rounded-2xl border border-neutral-100 bg-white p-6 shadow-[0_1px_4px_rgba(0,0,0,0.04)] lg:p-8">
+        <form onSubmit={handleSave} className="space-y-5">
+          <h2 className="font-heading text-lg font-extrabold text-primary">
+            Edit Profile
+          </h2>
 
           {error && (
-            <p className="rounded-lg bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p>
+            <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+              {error}
+            </p>
           )}
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -77,9 +81,9 @@ export function AccountProfile() {
             onChange={(e) => setPhone(e.target.value)}
           />
 
-          <div className="flex gap-3">
+          <div className="flex gap-3 pt-2">
             <Button type="submit" disabled={saving} size="sm">
-              {saving ? "Saving..." : "Save"}
+              {saving ? "Saving..." : "Save Changes"}
             </Button>
             <Button
               type="button"
@@ -91,43 +95,65 @@ export function AccountProfile() {
             </Button>
           </div>
         </form>
-      </Card>
+      </div>
     );
   }
 
   return (
-    <Card>
-      <div className="space-y-3">
+    <div className="rounded-2xl border border-neutral-100 bg-white p-6 shadow-[0_1px_4px_rgba(0,0,0,0.04)] lg:p-8">
+      <div className="space-y-5">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-neutral-900">Profile</h2>
-          <Button variant="secondary" size="sm" onClick={() => {
-            setFirstName(customer.first_name || "");
-            setLastName(customer.last_name || "");
-            setPhone(customer.phone || "");
-            setEditing(true);
-          }}>
+          <h2 className="font-heading text-lg font-extrabold text-primary">
+            Profile
+          </h2>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => {
+              setFirstName(customer.first_name || "");
+              setLastName(customer.last_name || "");
+              setPhone(customer.phone || "");
+              setEditing(true);
+            }}
+          >
             Edit
           </Button>
         </div>
-        <dl className="grid gap-2 text-sm">
-          <div>
-            <dt className="font-medium text-neutral-500">Name</dt>
-            <dd className="text-neutral-900">
-              {customer.first_name || customer.last_name
-                ? `${customer.first_name || ""} ${customer.last_name || ""}`.trim()
-                : "Not set"}
-            </dd>
-          </div>
-          <div>
-            <dt className="font-medium text-neutral-500">Email</dt>
-            <dd className="text-neutral-900">{customer.email}</dd>
-          </div>
-          <div>
-            <dt className="font-medium text-neutral-500">Phone</dt>
-            <dd className="text-neutral-900">{customer.phone || "Not set"}</dd>
-          </div>
+
+        <div className="h-px bg-neutral-100" />
+
+        <dl className="grid gap-4 text-sm sm:grid-cols-2">
+          <ProfileField label="Name">
+            {customer.first_name || customer.last_name
+              ? `${customer.first_name || ""} ${customer.last_name || ""}`.trim()
+              : "Not set"}
+          </ProfileField>
+          <ProfileField label="Email">{customer.email}</ProfileField>
+          <ProfileField label="Phone">
+            {customer.phone || "Not set"}
+          </ProfileField>
         </dl>
       </div>
-    </Card>
+    </div>
+  );
+}
+
+/**
+ * ProfileField — labeled value display used in the profile read-only view.
+ */
+function ProfileField({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <dt className="font-heading text-[10px] font-bold uppercase tracking-[0.1em] text-text-secondary">
+        {label}
+      </dt>
+      <dd className="mt-1 text-sm font-medium text-primary">{children}</dd>
+    </div>
   );
 }
