@@ -11,18 +11,25 @@ import type { Product, ProductCategory } from "@/lib/types";
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const region = await getRegion();
+  let products: Product[] = [];
+  let activeCategories: ProductCategory[] = [];
 
-  /* Fetch products and categories in parallel for faster page load */
-  const [productsResponse, categories] = await Promise.all([
-    region ? getProducts(region.id, 8) : null,
-    getCategories(),
-  ]);
+  try {
+    const region = await getRegion();
 
-  const products = (productsResponse?.products ?? []) as Product[];
-  const activeCategories = (categories ?? []).filter(
-    (c: ProductCategory) => c.is_active
-  );
+    /* Fetch products and categories in parallel for faster page load */
+    const [productsResponse, categories] = await Promise.all([
+      region ? getProducts(region.id, 8) : null,
+      getCategories(),
+    ]);
+
+    products = (productsResponse?.products ?? []) as Product[];
+    activeCategories = ((categories ?? []) as ProductCategory[]).filter(
+      (c) => c.is_active
+    );
+  } catch {
+    /* Backend unavailable — render page without products, ISR will retry */
+  }
 
   return (
     <>

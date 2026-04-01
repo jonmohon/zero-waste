@@ -17,14 +17,18 @@ interface CollectionPageProps {
 export async function generateMetadata({
   params,
 }: CollectionPageProps): Promise<Metadata> {
-  const { handle } = await params;
-  const categories = (await getCategories()) as ProductCategory[];
-  const category = categories.find((c) => c.handle === handle);
+  try {
+    const { handle } = await params;
+    const categories = (await getCategories()) as ProductCategory[];
+    const category = categories.find((c) => c.handle === handle);
 
-  return {
-    title: category?.name ?? "Collection",
-    description: category?.description ?? undefined,
-  };
+    return {
+      title: category?.name ?? "Collection",
+      description: category?.description ?? undefined,
+    };
+  } catch {
+    return { title: "Collection" };
+  }
 }
 
 export default async function CollectionPage({ params }: CollectionPageProps) {

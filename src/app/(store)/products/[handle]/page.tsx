@@ -20,11 +20,17 @@ interface ProductPageProps {
  * New products added after build will be rendered on-demand via ISR.
  */
 export async function generateStaticParams() {
-  const region = await getRegion();
-  if (!region) return [];
+  try {
+    const region = await getRegion();
+    if (!region) return [];
 
-  const { products } = await getProducts(region.id, 100);
-  return (products as Product[]).map((p) => ({ handle: p.handle }));
+    const { products } = await getProducts(region.id, 100);
+    return (products as Product[]).map((p) => ({ handle: p.handle }));
+  } catch {
+    /* Backend may be unavailable during build — skip static generation,
+       pages will be rendered on-demand via ISR instead */
+    return [];
+  }
 }
 
 /** Page metadata from Medusa product data */

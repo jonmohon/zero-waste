@@ -15,8 +15,14 @@ export const metadata: Metadata = {
 };
 
 export default async function CollectionsPage() {
-  const categories = (await getCategories()) as ProductCategory[];
-  const activeCategories = categories.filter((c) => c.is_active);
+  let activeCategories: ProductCategory[] = [];
+
+  try {
+    const categories = (await getCategories()) as ProductCategory[];
+    activeCategories = categories.filter((c) => c.is_active);
+  } catch {
+    /* Backend unavailable — render empty, ISR will retry */
+  }
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
