@@ -18,7 +18,7 @@ const QUICK_LINKS = [
   { label: "Beauty", href: "/collections/beauty" },
   { label: "Cleaning Products", href: "/collections/cleaning-products" },
   { label: "Dental Care", href: "/collections/dental-care" },
-  { label: "Gifts & Kits", href: "/collections/gifts-kits" },
+  { label: "Gifts & Kits", href: "/collections/gifts-&-kits" },
 ] as const;
 
 /** Info links displayed in the footer */

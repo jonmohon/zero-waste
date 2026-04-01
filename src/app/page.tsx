@@ -38,7 +38,7 @@ const FALLBACK_COLLECTIONS = [
   { name: "Beauty", handle: "beauty" },
   { name: "Cleaning Products", handle: "cleaning-products" },
   { name: "Dental Care", handle: "dental-care" },
-  { name: "Gifts & Kits", handle: "gifts-kits" },
+  { name: "Gifts & Kits", handle: "gifts-&-kits" },
 ];
 
 /**
