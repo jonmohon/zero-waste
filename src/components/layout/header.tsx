@@ -42,9 +42,9 @@ export function Header() {
             <Image
               src="/images/logo.webp"
               alt="The Zero Waste Store"
-              width={200}
-              height={200}
-              className="h-16 w-auto sm:h-20 lg:h-24"
+              width={160}
+              height={160}
+              className="h-12 w-auto sm:h-14 lg:h-16"
               priority
             />
           </Link>
