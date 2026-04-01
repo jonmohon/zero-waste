@@ -15,7 +15,7 @@ import { AuthNav } from "@/components/layout/auth-nav";
 /** Primary navigation links matching the store's categories */
 const NAV_LINKS = [
   { label: "All Products", href: "/collections" },
-  { label: "Bath & Body", href: "/collections/bath-&-body" },
+  { label: "Bath & Body", href: "/collections/bath-%26-body" },
   { label: "Hair Care", href: "/collections/hair-care" },
   { label: "Kitchen", href: "/collections/kitchen" },
   { label: "Oral Hygiene", href: "/collections/oral-hygiene" },

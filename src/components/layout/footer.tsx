@@ -10,7 +10,7 @@ import Link from "next/link";
 /** Quick links displayed in the footer navigation */
 const QUICK_LINKS = [
   { label: "All Products", href: "/collections" },
-  { label: "Bath & Body", href: "/collections/bath-&-body" },
+  { label: "Bath & Body", href: "/collections/bath-%26-body" },
   { label: "Hair Care", href: "/collections/hair-care" },
   { label: "Kitchen", href: "/collections/kitchen" },
   { label: "Laundry", href: "/collections/laundry" },

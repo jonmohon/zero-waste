@@ -121,7 +121,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
           </p>
         </div>
         <Link
-          href="/collections/bath-body-1"
+          href="/collections/bath-%26-body"
           className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg border-2 border-primary/18 px-6 py-3 font-heading text-[11px] font-bold uppercase tracking-[0.1em] text-primary transition-all duration-200 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white hover:shadow-lg"
         >
           View All
@@ -204,7 +204,7 @@ export function FeaturedProducts({ products }: FeaturedProductsProps) {
       {/* Footer CTA */}
       <div className="mt-12 text-center lg:mt-14">
         <Link
-          href="/collections/bath-body-1"
+          href="/collections/bath-%26-body"
           className="inline-flex items-center gap-2.5 rounded-xl bg-primary px-10 py-4 font-heading text-xs font-bold uppercase tracking-[0.09em] text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-xl"
         >
           View All Bath &amp; Body Products

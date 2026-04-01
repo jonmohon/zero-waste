@@ -24,7 +24,7 @@ const TYPEWRITER_WORDS = [
 /** Collection card data matching the artifact */
 const COLLECTIONS = [
   {
-    href: "/collections/bath-body-1",
+    href: "/collections/bath-%26-body",
     image: "https://images.unsplash.com/photo-1607006483224-a7c01c71c58d?w=800&q=85",
     category: "Bath & Body",
     stars: "\u2605\u2605\u2605\u2605\u2605",
