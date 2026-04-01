@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand colors — earth tones for zero-waste identity */
-  --color-brand-50: #f0fdf4;
-  --color-brand-100: #dcfce7;
-  --color-brand-200: #bbf7d0;
-  --color-brand-300: #86efac;
-  --color-brand-400: #4ade80;
-  --color-brand-500: #22c55e;
-  --color-brand-600: #16a34a;
-  --color-brand-700: #15803d;
-  --color-brand-800: #166534;
-  --color-brand-900: #14532d;
+  /* Brand colors — sage green earth tones from the original Zero Waste Store */
+  --color-brand-50: #f6f9f2;
+  --color-brand-100: #edf3e5;
+  --color-brand-200: #dce8cc;
+  --color-brand-300: #c4d9a8;
+  --color-brand-400: #a8c87e;
+  --color-brand-500: #92b66b;
+  --color-brand-600: #7a9e53;
+  --color-brand-700: #638342;
+  --color-brand-800: #4e6835;
+  --color-brand-900: #3a4e28;
 
+  /* Neutral palette matching the original site's dark text and grays */
   --color-neutral-50: #fafafa;
-  --color-neutral-100: #f5f5f5;
+  --color-neutral-100: #f3f3f3;
   --color-neutral-200: #e5e5e5;
   --color-neutral-300: #d4d4d4;
   --color-neutral-400: #a3a3a3;
@@ -22,7 +23,11 @@
   --color-neutral-600: #525252;
   --color-neutral-700: #404040;
   --color-neutral-800: #262626;
-  --color-neutral-900: #171717;
+  --color-neutral-900: #121212;
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Link blue from the original site */
+  --color-link: rgb(51, 79, 180);
+
+  --font-sans: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+  --font-script: Georgia, "Times New Roman", serif;
 }

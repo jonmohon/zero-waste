@@ -1,25 +1,19 @@
 // Root layout — wraps every page with shared HTML structure, fonts, and styles.
 // Header and Footer are server components rendered once per navigation.
+// Uses Century Gothic as the primary font to match the original Zero Waste Store.
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import "@/styles/globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-sans",
-});
-
 /** Default metadata — individual pages can override via their own export */
 export const metadata: Metadata = {
   title: {
-    default: "Zero Waste — Sustainable Products",
-    template: "%s | Zero Waste",
+    default: "The Zero Waste Store — Sustainable Products",
+    template: "%s | The Zero Waste Store",
   },
   description:
-    "Shop sustainable, zero-waste products for everyday living. Better for you, better for the planet.",
+    "Shop sustainable, zero-waste products for everyday living. Saving the planet, one eco product at a time.",
 };
 
 export default function RootLayout({
@@ -28,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en">
       <body className="flex min-h-screen flex-col bg-white font-sans text-neutral-900 antialiased">
         <Header />
         <main className="flex-1">{children}</main>

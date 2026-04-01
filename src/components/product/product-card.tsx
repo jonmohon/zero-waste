@@ -70,7 +70,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
             {product.title}
           </h3>
           {price && (
-            <p className="mt-1 text-sm font-medium text-brand-700">
+            <p className="mt-1 text-sm font-medium text-brand-600">
               {price}
             </p>
           )}
