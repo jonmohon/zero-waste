@@ -5,6 +5,7 @@
 // 3. Shop Collections Carousel with typewriter effect
 // Server component that fetches products at request time.
 // Revalidates every 60 seconds (ISR).
+import { HeroVideo } from "@/components/home/hero-video";
 import { FeaturedProducts } from "@/components/home/featured-products";
 import { BrandStory } from "@/components/home/brand-story";
 import { ShopCollections } from "@/components/home/shop-collections";
@@ -26,6 +27,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <HeroVideo />
       <FeaturedProducts products={products} />
       <BrandStory />
       <ShopCollections />
