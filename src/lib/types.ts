@@ -47,3 +47,29 @@ export interface ProductCategory {
   description: string | null;
   is_active: boolean;
 }
+
+/** Authenticated customer from Medusa store API */
+export interface Customer {
+  id: string;
+  email: string;
+  first_name: string | null;
+  last_name: string | null;
+  phone: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+/** Customer shipping/billing address */
+export interface CustomerAddress {
+  id: string;
+  first_name: string | null;
+  last_name: string | null;
+  company: string | null;
+  address_1: string | null;
+  address_2: string | null;
+  city: string | null;
+  province: string | null;
+  postal_code: string | null;
+  country_code: string | null;
+  phone: string | null;
+}

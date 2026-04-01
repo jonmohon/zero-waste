@@ -14,6 +14,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { MobileMenu } from "@/components/layout/mobile-menu";
+import { AuthNav } from "@/components/layout/auth-nav";
 
 /** Primary navigation links matching the original store's nav categories */
 const NAV_LINKS = [
@@ -33,7 +34,7 @@ export function Header() {
       <div className="border-b border-neutral-200 bg-white">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8">
           {/* Mobile menu toggle (left side on mobile) */}
-          <MobileMenu links={[...NAV_LINKS]} />
+          <MobileMenu links={[...NAV_LINKS, { label: "My Account", href: "/account" }]} />
 
           {/* Brand logo — original store logo image */}
           <Link href="/" className="flex items-center">
@@ -60,26 +61,29 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Cart icon */}
-          <Link
-            href="/cart"
-            className="flex items-center gap-1 text-neutral-600 transition-colors hover:text-neutral-900"
-            aria-label="Shopping cart"
-          >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
+          {/* Right-side actions: auth + cart */}
+          <div className="flex items-center gap-4">
+            <AuthNav />
+            <Link
+              href="/cart"
+              className="flex items-center gap-1 text-neutral-600 transition-colors hover:text-neutral-900"
+              aria-label="Shopping cart"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-              />
-            </svg>
-          </Link>
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                />
+              </svg>
+            </Link>
+          </div>
         </div>
       </div>
     </header>
