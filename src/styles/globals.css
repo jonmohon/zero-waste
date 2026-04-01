@@ -1,19 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand colors — sage green earth tones from the original Zero Waste Store */
+  /* Primary palette — from the design artifact */
+  --color-primary: #1a2b1c;
+  --color-primary-light: #2a3f2c;
+  --color-accent: #4aaa42;
+  --color-accent-hover: #357a2e;
+  --color-blue: #1a7bb9;
+  --color-text-secondary: #6b7c6e;
+  --color-surface: #f7f8f5;
+  --color-surface-warm: #f8f7f4;
+  --color-surface-beige: #f0ede6;
+
+  /* Legacy brand scale — kept for existing pages that reference brand-* */
   --color-brand-50: #f6f9f2;
   --color-brand-100: #edf3e5;
   --color-brand-200: #dce8cc;
   --color-brand-300: #c4d9a8;
   --color-brand-400: #a8c87e;
-  --color-brand-500: #92b66b;
-  --color-brand-600: #7a9e53;
-  --color-brand-700: #638342;
-  --color-brand-800: #4e6835;
-  --color-brand-900: #3a4e28;
+  --color-brand-500: #4aaa42;
+  --color-brand-600: #357a2e;
+  --color-brand-700: #2a5f24;
+  --color-brand-800: #1a2b1c;
+  --color-brand-900: #121d13;
 
-  /* Neutral palette matching the original site's dark text and grays */
+  /* Neutral palette */
   --color-neutral-50: #fafafa;
   --color-neutral-100: #f3f3f3;
   --color-neutral-200: #e5e5e5;
@@ -25,9 +36,36 @@
   --color-neutral-800: #262626;
   --color-neutral-900: #121212;
 
-  /* Link blue from the original site */
-  --color-link: rgb(51, 79, 180);
+  --color-link: #1a7bb9;
 
-  --font-sans: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-  --font-script: Georgia, "Times New Roman", serif;
+  /* Font families — actual fonts loaded via next/font in layout.tsx */
+  --font-sans: var(--font-open-sans), "Open Sans", sans-serif;
+  --font-heading: var(--font-montserrat), "Montserrat", sans-serif;
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", serif;
+
+  /* Custom keyframes */
+  --animate-fade-up: fade-up 0.6s ease both;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+  --animate-line-glow: line-glow 4s ease-in-out infinite;
+  --animate-type-blink: type-blink 1s step-end infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.6; }
+}
+
+@keyframes line-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes type-blink {
+  0%, 100% { border-color: #1a7bb9; }
+  50% { border-color: transparent; }
 }

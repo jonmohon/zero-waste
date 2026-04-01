@@ -4,6 +4,7 @@
  *
  * Renders as a styled <button> or <a> depending on whether `href` is provided.
  * Supports two visual variants: "primary" (filled) and "secondary" (outlined).
+ * Colors updated to match the new deep green / accent green palette.
  *
  * @param variant - visual style: "primary" (default) or "secondary"
  * @param size - button size: "sm", "md" (default), or "lg"
@@ -23,9 +24,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-brand-500 text-white hover:bg-brand-600 active:bg-brand-700",
+    "bg-primary text-white hover:bg-accent active:bg-accent-hover shadow-md hover:shadow-lg",
   secondary:
-    "border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white active:bg-neutral-800",
+    "border-2 border-primary/18 text-primary hover:bg-primary hover:text-white hover:border-primary active:bg-primary-light",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -43,7 +44,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center rounded-lg font-medium transition-colors duration-150 cursor-pointer",
+    "inline-flex items-center justify-center rounded-lg font-heading font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer",
     variantStyles[variant],
     sizeStyles[size],
     className

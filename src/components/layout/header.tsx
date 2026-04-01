@@ -1,11 +1,7 @@
 /**
  * Header — top navigation bar rendered on every page via the root layout.
- * Matches the original thezerowastestore.com design with:
- * - Announcement bar (promo banner)
- * - Script-style logo
- * - Desktop nav with category links
- * - Mobile hamburger menu
- * - Cart/search icons
+ * Redesigned to match the artifact aesthetic with the new color palette:
+ * deep green primary, accent green, and Montserrat typography.
  *
  * Server component — the mobile menu is a separate client component
  * composed inside this one.
@@ -16,14 +12,14 @@ import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import { AuthNav } from "@/components/layout/auth-nav";
 
-/** Primary navigation links matching the original store's nav categories */
+/** Primary navigation links matching the store's categories */
 const NAV_LINKS = [
   { label: "All Products", href: "/collections" },
-  { label: "Beauty", href: "/collections/beauty" },
-  { label: "Cleaning Products", href: "/collections/cleaning-products" },
-  { label: "Dental Care", href: "/collections/dental-care" },
-  { label: "Gifts & Kits", href: "/collections/gifts-&-kits" },
+  { label: "Bath & Body", href: "/collections/bath-&-body" },
+  { label: "Hair Care", href: "/collections/hair-care" },
   { label: "Kitchen", href: "/collections/kitchen" },
+  { label: "Oral Hygiene", href: "/collections/oral-hygiene" },
+  { label: "Skin Care", href: "/collections/skin-care" },
 ] as const;
 
 export function Header() {
@@ -31,12 +27,17 @@ export function Header() {
     <header className="sticky top-0 z-50">
       <AnnouncementBar />
 
-      <div className="border-b border-neutral-200 bg-white">
+      <div className="border-b border-primary/8 bg-white/95 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8">
           {/* Mobile menu toggle (left side on mobile) */}
-          <MobileMenu links={[...NAV_LINKS, { label: "My Account", href: "/account" }]} />
+          <MobileMenu
+            links={[
+              ...NAV_LINKS,
+              { label: "My Account", href: "/account" },
+            ]}
+          />
 
-          {/* Brand logo — original store logo image */}
+          {/* Brand logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo.webp"
@@ -54,7 +55,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium uppercase tracking-wider text-neutral-600 transition-colors hover:text-brand-600"
+                className="font-heading text-[11px] font-semibold uppercase tracking-[0.1em] text-text-secondary transition-colors duration-200 hover:text-accent"
               >
                 {link.label}
               </Link>
@@ -66,7 +67,7 @@ export function Header() {
             <AuthNav />
             <Link
               href="/cart"
-              className="flex items-center gap-1 text-neutral-600 transition-colors hover:text-neutral-900"
+              className="flex items-center gap-1 text-text-secondary transition-colors hover:text-primary"
               aria-label="Shopping cart"
             >
               <svg
