@@ -58,8 +58,26 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
             priority={priority}
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-sm text-neutral-400">
-            No image
+          <div className="flex h-full flex-col items-center justify-center gap-2 bg-surface-sage/30">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 48 48"
+              fill="none"
+              className="text-accent/20"
+            >
+              <path
+                d="M24 4C24 4 36 16 36 28C36 34.6274 30.6274 40 24 40C17.3726 40 12 34.6274 12 28C12 16 24 4 24 4Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path d="M24 16V34" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            <span className="font-heading text-[9px] font-semibold uppercase tracking-[0.1em] text-text-secondary/50">
+              Image coming soon
+            </span>
           </div>
         )}
         {/* Hover overlay */}

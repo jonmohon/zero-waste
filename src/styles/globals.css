@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Primary palette — from the design artifact */
+  /* Primary palette */
   --color-primary: #1a2b1c;
   --color-primary-light: #2a3f2c;
   --color-accent: #4aaa42;
@@ -9,10 +9,12 @@
   --color-blue: #1a7bb9;
   --color-text-secondary: #6b7c6e;
   --color-surface: #f7f8f5;
-  --color-surface-warm: #f8f7f4;
+  --color-surface-warm: #faf8f5;
   --color-surface-beige: #f0ede6;
+  --color-surface-sage: #e8ede3;
+  --color-cream: #faf8f5;
 
-  /* Legacy brand scale — kept for existing pages that reference brand-* */
+  /* Legacy brand scale */
   --color-brand-50: #f6f9f2;
   --color-brand-100: #edf3e5;
   --color-brand-200: #dce8cc;
@@ -50,6 +52,8 @@
   --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
   --animate-line-glow: line-glow 4s ease-in-out infinite;
   --animate-type-blink: type-blink 1s step-end infinite;
+  --animate-shimmer: shimmer 2s infinite linear;
+  --animate-scroll-hint: scroll-hint 2s ease-in-out infinite;
 }
 
 @keyframes fade-up {
@@ -82,6 +86,16 @@
   50% { border-color: transparent; }
 }
 
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes scroll-hint {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(8px); }
+}
+
 /* ═══ GLOBAL POLISH ═══ */
 
 /* Smooth scrolling and selection color */
@@ -105,4 +119,31 @@ body {
 :focus-visible {
   outline: 2px solid #4aaa42;
   outline-offset: 2px;
+}
+
+/* Custom scrollbar — thin, green accent */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf8f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4d9a8;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4aaa42;
+}
+
+/* Scroll-triggered reveal — used by IntersectionObserver-free CSS approach */
+@supports (animation-timeline: view()) {
+  .reveal-on-scroll {
+    animation: fade-up 0.6s ease both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
 }

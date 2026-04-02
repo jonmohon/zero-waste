@@ -1,14 +1,16 @@
 // Route: /
-// Homepage — redesigned to match the artifact with four main sections:
-// 1. Featured Products (Bath & Body showcase)
-// 2. Brand Story Hero + Philosophy Cards
-// 3. Shop Collections Carousel with typewriter effect
+// Homepage — premium redesign with cinematic hero, trust stats, category grid,
+// bestsellers from Medusa, value props, press bar, brand story, and newsletter.
 // Server component that fetches products at request time.
 // Revalidates every 60 seconds (ISR).
 import { HeroVideo } from "@/components/home/hero-video";
-import { FeaturedProducts } from "@/components/home/featured-products";
+import { StatsBar } from "@/components/home/stats-bar";
+import { ShopByCategory } from "@/components/home/shop-by-category";
+import { Bestsellers } from "@/components/home/bestsellers";
+import { WhyChooseUs } from "@/components/home/why-choose-us";
+import { PressBar } from "@/components/home/press-bar";
 import { BrandStory } from "@/components/home/brand-story";
-import { ShopCollections } from "@/components/home/shop-collections";
+import { Newsletter } from "@/components/home/newsletter";
 import { getProducts, getRegion } from "@/lib/medusa";
 import type { Product } from "@/lib/types";
 
@@ -28,9 +30,13 @@ export default async function HomePage() {
   return (
     <>
       <HeroVideo />
-      <FeaturedProducts products={products} />
+      <StatsBar />
+      <ShopByCategory />
+      <Bestsellers products={products} />
+      <WhyChooseUs />
+      <PressBar />
       <BrandStory />
-      <ShopCollections />
+      <Newsletter />
     </>
   );
 }

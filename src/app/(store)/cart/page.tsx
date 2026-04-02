@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 
 export default function CartPage() {
   return (
-    <div className="bg-white">
+    <div className="bg-cream">
       {/* Header */}
-      <div className="border-b border-neutral-100 bg-surface">
+      <div className="border-b border-surface-sage bg-white">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <h1 className="font-heading text-3xl font-extrabold tracking-tight text-primary">
             Your Cart

@@ -1,6 +1,7 @@
 // Route: /products/[handle]
 // Individual product page. Fetches a single product by handle from Medusa.
-// Premium layout with large image, refined typography, and pill-style options.
+// Premium layout with large image, refined typography, pill-style options,
+// and a "You may also like" section with related products.
 // Revalidates every 60 seconds (ISR).
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -9,6 +10,7 @@ import { notFound } from "next/navigation";
 import { getProductByHandle, getProducts, getRegion } from "@/lib/medusa";
 import { formatPrice } from "@/lib/utils";
 import { AddToCartButton } from "@/components/product/add-to-cart-button";
+import { ProductCard } from "@/components/product/product-card";
 import type { Product } from "@/lib/types";
 
 export const revalidate = 60;
@@ -82,8 +84,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
       )
     : null;
 
+  /* Fetch related products for "You may also like" */
+  let relatedProducts: Product[] = [];
+  try {
+    const response = await getProducts(region.id, 12);
+    relatedProducts = ((response?.products ?? []) as Product[])
+      .filter((p) => p.id !== product.id)
+      .slice(0, 4);
+  } catch {
+    /* Graceful fallback — section simply won't show */
+  }
+
   return (
-    <div className="bg-white">
+    <div className="bg-cream">
       {/* Breadcrumb */}
       <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
         <nav className="flex items-center gap-2 text-[13px] text-text-secondary">
@@ -111,7 +124,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* Product image area */}
           <div className="space-y-3">
             {/* Main image */}
-            <div className="relative aspect-square overflow-hidden rounded-2xl bg-surface">
+            <div className="relative aspect-square overflow-hidden rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
               {mainImage ? (
                 <Image
                   src={mainImage}
@@ -122,9 +135,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   priority
                 />
               ) : (
-                <div className="flex h-full items-center justify-center text-neutral-400">
-                  No image available
-                </div>
+                <ProductImagePlaceholder />
               )}
             </div>
 
@@ -134,7 +145,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 {galleryImages.map((img, i) => (
                   <div
                     key={img.id ?? i}
-                    className="relative aspect-square overflow-hidden rounded-xl bg-surface ring-2 ring-transparent transition-all duration-200 first:ring-accent"
+                    className="relative aspect-square overflow-hidden rounded-xl bg-white shadow-sm ring-2 ring-transparent transition-all duration-200 first:ring-accent"
                   >
                     <Image
                       src={img.url}
@@ -176,7 +187,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </div>
 
             {/* Divider */}
-            <div className="my-6 h-px bg-neutral-100" />
+            <div className="my-6 h-px bg-neutral-200" />
 
             {/* Description */}
             {product.description && (
@@ -197,10 +208,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
                       {option.values.map((val, i) => (
                         <span
                           key={val.id}
-                          className={`cursor-pointer rounded-lg border px-4 py-2 font-heading text-[12px] font-semibold transition-all duration-200 ${
+                          className={`cursor-pointer rounded-lg border px-4 py-2.5 font-heading text-[12px] font-semibold transition-all duration-200 hover:shadow-sm ${
                             i === 0
-                              ? "border-primary bg-primary text-white"
-                              : "border-neutral-200 text-neutral-600 hover:border-primary hover:text-primary"
+                              ? "border-primary bg-primary text-white shadow-sm"
+                              : "border-neutral-200 bg-white text-neutral-600 hover:border-primary hover:text-primary"
                           }`}
                         >
                           {val.value}
@@ -229,6 +240,69 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
         </div>
       </div>
+
+      {/* You May Also Like — related products */}
+      {relatedProducts.length > 0 && (
+        <div className="border-t border-surface-sage bg-white px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <div className="mx-auto max-w-7xl">
+            <h2 className="mb-10 text-center font-serif text-3xl font-semibold italic text-primary sm:text-4xl">
+              You May Also Like
+            </h2>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {relatedProducts.map((p, i) => (
+                <ProductCard key={p.id} product={p} priority={i < 2} />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * ProductImagePlaceholder — decorative placeholder for products without images.
+ * Renders a leaf illustration with brand-consistent colors.
+ */
+function ProductImagePlaceholder() {
+  return (
+    <div className="flex h-full flex-col items-center justify-center gap-4 bg-surface-sage/30 p-8">
+      <svg
+        width="72"
+        height="72"
+        viewBox="0 0 48 48"
+        fill="none"
+        className="text-accent/25"
+      >
+        <path
+          d="M24 4C24 4 36 16 36 28C36 34.6274 30.6274 40 24 40C17.3726 40 12 34.6274 12 28C12 16 24 4 24 4Z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M24 16V34"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M24 22L18 28"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M24 26L30 32"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+      </svg>
+      <p className="font-heading text-[11px] font-semibold uppercase tracking-[0.1em] text-text-secondary/60">
+        Image coming soon
+      </p>
     </div>
   );
 }
@@ -247,7 +321,7 @@ function TrustBadge({
   sub: string;
 }) {
   return (
-    <div className="flex items-center gap-2.5 rounded-xl border border-neutral-100 bg-surface px-3 py-2.5">
+    <div className="flex items-center gap-2.5 rounded-xl border border-neutral-100 bg-white px-3 py-2.5 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
       <span className="text-lg">{icon}</span>
       <div>
         <p className="font-heading text-[10px] font-bold uppercase tracking-wider text-primary">

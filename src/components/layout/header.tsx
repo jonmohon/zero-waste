@@ -27,7 +27,7 @@ export function Header() {
     <header className="sticky top-0 z-50">
       <AnnouncementBar />
 
-      <div className="border-b border-primary/6 bg-white/97 shadow-[0_1px_3px_rgba(0,0,0,0.04)] backdrop-blur-xl">
+      <div className="border-b border-primary/6 bg-white/90 shadow-[0_1px_4px_rgba(0,0,0,0.05)] backdrop-blur-xl backdrop-saturate-150">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-[72px] lg:px-8">
           {/* Mobile menu toggle (left side on mobile) */}
           <MobileMenu

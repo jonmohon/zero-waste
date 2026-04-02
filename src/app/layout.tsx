@@ -49,7 +49,7 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${montserrat.variable} ${openSans.variable}`}
     >
-      <body className="flex min-h-screen flex-col bg-white font-sans text-primary antialiased">
+      <body className="flex min-h-screen flex-col bg-cream font-sans text-primary antialiased">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
