@@ -15,7 +15,7 @@ export function BrandStory() {
         {/* Left — editorial image */}
         <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
           <Image
-            src="https://images.unsplash.com/photo-1600857544200-b2f468e10344?w=1200&q=85"
+            src="https://images.unsplash.com/photo-1602928321679-560bb453f190?w=1200&q=85"
             alt="Natural artisan soap bars arranged on a wooden surface"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
