@@ -19,6 +19,7 @@
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/auth-provider";
+import { useCart } from "@/components/cart/cart-provider";
 
 interface AddToCartButtonProps {
   productId: string;
@@ -28,9 +29,11 @@ interface AddToCartButtonProps {
 export function AddToCartButton({ variantId }: AddToCartButtonProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+  const { addItem } = useCart();
   const [adding, setAdding] = useState(false);
   const [added, setAdded] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleAddToCart() {
     if (!isAuthenticated) {
@@ -40,27 +43,34 @@ export function AddToCartButton({ variantId }: AddToCartButtonProps) {
 
     if (!variantId) return;
     setAdding(true);
+    setError(null);
 
-    // TODO(jon 2026-04-11): wire to Medusa cart API via SDK
-    // For now, simulate a brief delay to show the loading state
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
+    const result = await addItem(variantId, 1);
     setAdding(false);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
+
+    if (result.success) {
+      setAdded(true);
+      setTimeout(() => setAdded(false), 2000);
+    } else {
+      setError(result.error || "Could not add to cart");
+      setTimeout(() => setError(null), 3000);
+    }
   }
 
   return (
-    <button
-      type="button"
-      onClick={handleAddToCart}
-      disabled={isLoading || adding || (!variantId && isAuthenticated)}
-      className={`group inline-flex w-full items-center justify-center gap-3 rounded-xl px-8 py-4 font-heading text-sm font-bold uppercase tracking-[0.08em] shadow-lg transition-all duration-300 sm:w-auto sm:min-w-[240px] ${
-        added
-          ? "bg-accent text-white shadow-accent/25"
-          : "bg-primary text-white hover:-translate-y-0.5 hover:bg-accent hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:bg-primary disabled:hover:shadow-lg"
-      }`}
-    >
+    <div className="flex flex-col gap-2 sm:items-start">
+      <button
+        type="button"
+        onClick={handleAddToCart}
+        disabled={authLoading || adding || (!variantId && isAuthenticated)}
+        className={`group inline-flex w-full items-center justify-center gap-3 rounded-xl px-8 py-4 font-heading text-sm font-bold uppercase tracking-[0.08em] shadow-lg transition-all duration-300 sm:w-auto sm:min-w-[240px] ${
+          error
+            ? "bg-red-600 text-white"
+            : added
+              ? "bg-accent text-white shadow-accent/25"
+              : "bg-primary text-white hover:-translate-y-0.5 hover:bg-accent hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:bg-primary disabled:hover:shadow-lg"
+        }`}
+      >
       {adding ? (
         <>
           <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
@@ -84,6 +94,15 @@ export function AddToCartButton({ variantId }: AddToCartButtonProps) {
           Add to Cart
         </>
       )}
-    </button>
+      </button>
+      {error && (
+        <p
+          role="alert"
+          className="text-xs font-medium text-red-700"
+        >
+          {error}
+        </p>
+      )}
+    </div>
   );
 }

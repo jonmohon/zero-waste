@@ -59,6 +59,49 @@ export interface Customer {
   updated_at: string;
 }
 
+/**
+ * Cart line item — one product variant in the cart with quantity and totals.
+ * Mirrors the Medusa store cart line item shape for the fields the storefront uses.
+ */
+export interface CartLineItem {
+  id: string;
+  variant_id: string | null;
+  product_id: string | null;
+  product_title: string | null;
+  product_handle: string | null;
+  variant_title: string | null;
+  thumbnail: string | null;
+  quantity: number;
+  unit_price: number;
+  /** Subtotal (unit_price * quantity) in the cart's currency, smallest unit. */
+  subtotal: number;
+  /** Total after discounts/tax for this line, smallest unit. */
+  total: number;
+}
+
+/**
+ * Cart — Medusa store cart with items and totals.
+ * All money values are in the smallest currency unit (cents for USD).
+ */
+export interface Cart {
+  id: string;
+  region_id: string | null;
+  currency_code: string;
+  email: string | null;
+  customer_id: string | null;
+  items: CartLineItem[];
+  /** Sum of line item subtotals before discounts/tax. */
+  subtotal: number;
+  /** Tax total. */
+  tax_total: number;
+  /** Shipping total. */
+  shipping_total: number;
+  /** Discount total. */
+  discount_total: number;
+  /** Final total the customer pays. */
+  total: number;
+}
+
 /** Customer shipping/billing address */
 export interface CustomerAddress {
   id: string;

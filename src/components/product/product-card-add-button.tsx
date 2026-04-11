@@ -20,6 +20,7 @@
 import { useState, type MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/auth-provider";
+import { useCart } from "@/components/cart/cart-provider";
 
 interface ProductCardAddButtonProps {
   variantId?: string;
@@ -31,12 +32,14 @@ export function ProductCardAddButton({
   productHref,
 }: ProductCardAddButtonProps) {
   const router = useRouter();
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+  const { addItem } = useCart();
   const [adding, setAdding] = useState(false);
   const [added, setAdded] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleClick(e: MouseEvent<HTMLButtonElement>) {
-    /* Defensive: stop the click from bubbling up to the parent Link */
+    /* Stop the click from bubbling up to the parent Link / navigating */
     e.preventDefault();
     e.stopPropagation();
 
@@ -47,28 +50,53 @@ export function ProductCardAddButton({
 
     if (!variantId) return;
     setAdding(true);
+    setError(null);
 
-    // TODO(jon 2026-04-11): wire to Medusa cart API via SDK
-    await new Promise((resolve) => setTimeout(resolve, 400));
-
+    const result = await addItem(variantId, 1);
     setAdding(false);
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1800);
+
+    if (result.success) {
+      setAdded(true);
+      setTimeout(() => setAdded(false), 1800);
+    } else {
+      setError(result.error || "Could not add to cart");
+      setTimeout(() => setError(null), 3000);
+    }
   }
 
   return (
     <button
       type="button"
       onClick={handleClick}
-      disabled={isLoading || adding || (!variantId && isAuthenticated)}
+      disabled={authLoading || adding || (!variantId && isAuthenticated)}
       className={`group/btn flex w-full items-center justify-center gap-2 rounded-xl px-3 py-2.5 font-heading text-[11px] font-bold uppercase tracking-[0.1em] transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 ${
-        added
-          ? "bg-accent text-white shadow-sm"
-          : "border-[1.5px] border-primary/15 bg-white text-primary hover:-translate-y-px hover:border-primary hover:bg-primary hover:text-white hover:shadow-md"
+        error
+          ? "border-[1.5px] border-red-500 bg-red-50 text-red-700"
+          : added
+            ? "bg-accent text-white shadow-sm"
+            : "border-[1.5px] border-primary/15 bg-white text-primary hover:-translate-y-px hover:border-primary hover:bg-primary hover:text-white hover:shadow-md"
       }`}
       aria-label="Add to cart"
+      title={error ?? undefined}
     >
-      {adding ? (
+      {error ? (
+        <>
+          <svg
+            className="h-3.5 w-3.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            strokeWidth="2.5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 9v3.75m0 3.75h.008v.008H12v-.008zM12 3.75c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z"
+            />
+          </svg>
+          Try again
+        </>
+      ) : adding ? (
         <>
           <svg
             className="h-3.5 w-3.5 animate-spin"
