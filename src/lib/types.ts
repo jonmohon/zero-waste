@@ -102,6 +102,53 @@ export interface Cart {
   total: number;
 }
 
+/**
+ * A shipping option returned by Medusa for a specific cart. Used to render
+ * the shipping-method picker on the checkout page.
+ */
+export interface ShippingOption {
+  id: string;
+  name: string;
+  price_type: string;
+  amount: number;
+  data?: Record<string, unknown> | null;
+  type?: {
+    label?: string | null;
+    description?: string | null;
+    code?: string | null;
+  } | null;
+}
+
+/**
+ * A payment provider that can be selected at checkout.
+ * For this storefront we currently only support `pp_system_default`
+ * (manual/test payment); Stripe etc. would slot in here.
+ */
+export interface PaymentProvider {
+  id: string;
+  is_enabled: boolean;
+}
+
+/**
+ * Order summary returned by the order confirmation page after a
+ * successful checkout. Mirrors the Medusa store order shape for the
+ * fields the storefront uses.
+ */
+export interface Order {
+  id: string;
+  display_id: number;
+  status: string;
+  email: string | null;
+  currency_code: string;
+  items: CartLineItem[];
+  subtotal: number;
+  tax_total: number;
+  shipping_total: number;
+  discount_total: number;
+  total: number;
+  shipping_address: CustomerAddress | null;
+}
+
 /** Customer shipping/billing address */
 export interface CustomerAddress {
   id: string;
