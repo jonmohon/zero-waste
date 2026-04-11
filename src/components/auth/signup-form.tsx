@@ -2,22 +2,31 @@
  * SignupForm — customer registration form with email, password, and confirm.
  * Used in: /signup page.
  *
- * Validates passwords match on the client before calling the register action.
- * On success, redirects to /account.
- * Styled with refined typography for consistency with signin form.
+ * On success, redirects to the URL passed via `?redirect=...` if it's a
+ * safe same-origin path, otherwise to /account. This lets users land
+ * back on the product they were trying to add to cart.
  */
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/components/auth/auth-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+/** See SigninForm.safeRedirect — same open-redirect guard. */
+function safeRedirect(raw: string | null): string {
+  if (!raw) return "/account";
+  if (!raw.startsWith("/") || raw.startsWith("//")) return "/account";
+  return raw;
+}
+
 export function SignupForm() {
   const { register } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTarget = safeRedirect(searchParams.get("redirect"));
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -36,7 +45,7 @@ export function SignupForm() {
     setLoading(true);
     const result = await register(email, password);
     if (result.success) {
-      router.replace("/account");
+      router.replace(redirectTarget);
     } else {
       setError(result.error || "Registration failed");
       setLoading(false);
@@ -95,7 +104,11 @@ export function SignupForm() {
       <p className="text-center text-sm text-text-secondary">
         Already have an account?{" "}
         <Link
-          href="/signin"
+          href={
+            redirectTarget === "/account"
+              ? "/signin"
+              : `/signin?redirect=${encodeURIComponent(redirectTarget)}`
+          }
           className="font-semibold text-accent transition-colors duration-200 hover:text-accent-hover"
         >
           Sign in

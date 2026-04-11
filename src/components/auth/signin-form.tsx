@@ -2,22 +2,40 @@
  * SigninForm — email/password login form.
  * Used in: /signin page.
  *
- * On successful login, redirects the customer to /account.
+ * On successful login, redirects the customer to the URL passed via the
+ * `?redirect=...` query param if present (e.g. from clicking Add to Cart
+ * while logged out), otherwise to /account.
+ *
+ * Only relative `/...` redirect targets are honored — anything else
+ * (absolute URLs, javascript:, etc.) falls back to /account so the form
+ * can't be turned into an open-redirect.
+ *
  * Displays inline error messages on failure.
- * Styled with refined typography and spacing for a premium feel.
  */
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/components/auth/auth-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+/**
+ * Pull the `redirect` query param and only return it if it's a safe,
+ * same-origin path. Anything else returns `/account`.
+ */
+function safeRedirect(raw: string | null): string {
+  if (!raw) return "/account";
+  if (!raw.startsWith("/") || raw.startsWith("//")) return "/account";
+  return raw;
+}
+
 export function SigninForm() {
   const { login } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTarget = safeRedirect(searchParams.get("redirect"));
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -30,7 +48,7 @@ export function SigninForm() {
 
     const result = await login(email, password);
     if (result.success) {
-      router.replace("/account");
+      router.replace(redirectTarget);
     } else {
       setError(result.error || "Invalid email or password");
       setLoading(false);
@@ -87,7 +105,11 @@ export function SigninForm() {
         <p>
           Don&apos;t have an account?{" "}
           <Link
-            href="/signup"
+            href={
+              redirectTarget === "/account"
+                ? "/signup"
+                : `/signup?redirect=${encodeURIComponent(redirectTarget)}`
+            }
             className="font-semibold text-accent transition-colors duration-200 hover:text-accent-hover"
           >
             Create one

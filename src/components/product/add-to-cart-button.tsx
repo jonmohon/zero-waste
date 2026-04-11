@@ -1,9 +1,14 @@
 /**
  * AddToCartButton — client component that handles adding a product to cart.
- * Used in: ProductPage.
+ * Used in: ProductPage (detail page CTA).
  *
- * This is intentionally a thin client wrapper — the product page itself
- * is a server component. Only this button needs client JS for the click handler.
+ * Behavior:
+ * - If the customer is not signed in, clicking sends them to /signin with
+ *   a `redirect` query param so they return to the same product page.
+ * - Once signed in, click does the local cart-add UX (placeholder until
+ *   the Medusa cart API is wired up).
+ *
+ * Thin client wrapper — the product page itself is a server component.
  * Styled as a prominent, full-width CTA with loading and success states.
  *
  * @param productId - Medusa product ID
@@ -12,6 +17,8 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useAuth } from "@/components/auth/auth-provider";
 
 interface AddToCartButtonProps {
   productId: string;
@@ -19,14 +26,22 @@ interface AddToCartButtonProps {
 }
 
 export function AddToCartButton({ variantId }: AddToCartButtonProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const { isAuthenticated, isLoading } = useAuth();
   const [adding, setAdding] = useState(false);
   const [added, setAdded] = useState(false);
 
   async function handleAddToCart() {
+    if (!isAuthenticated) {
+      router.push(`/signin?redirect=${encodeURIComponent(pathname)}`);
+      return;
+    }
+
     if (!variantId) return;
     setAdding(true);
 
-    // TODO(jon 2026-04-01): wire to Medusa cart API via SDK
+    // TODO(jon 2026-04-11): wire to Medusa cart API via SDK
     // For now, simulate a brief delay to show the loading state
     await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -37,8 +52,9 @@ export function AddToCartButton({ variantId }: AddToCartButtonProps) {
 
   return (
     <button
+      type="button"
       onClick={handleAddToCart}
-      disabled={!variantId || adding}
+      disabled={isLoading || adding || (!variantId && isAuthenticated)}
       className={`group inline-flex w-full items-center justify-center gap-3 rounded-xl px-8 py-4 font-heading text-sm font-bold uppercase tracking-[0.08em] shadow-lg transition-all duration-300 sm:w-auto sm:min-w-[240px] ${
         added
           ? "bg-accent text-white shadow-accent/25"
