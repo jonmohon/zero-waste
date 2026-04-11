@@ -1,7 +1,12 @@
 // Route: /signin
 // Customer login page. Renders the SigninForm client component
 // in a centered layout with brand messaging on the side.
+//
+// SigninForm reads `?redirect=` via useSearchParams, which Next.js
+// requires to be wrapped in a Suspense boundary so the rest of the
+// page can still be statically prerendered.
 
+import { Suspense } from "react";
 import { SigninForm } from "@/components/auth/signin-form";
 
 export const metadata = { title: "Sign In" };
@@ -30,9 +35,33 @@ export default function SigninPage() {
 
         {/* Form panel */}
         <div className="p-8 sm:p-10 lg:p-12">
-          <SigninForm />
+          <Suspense fallback={<SigninFormFallback />}>
+            <SigninForm />
+          </Suspense>
         </div>
       </div>
+    </div>
+  );
+}
+
+/**
+ * Skeleton shown while the SigninForm is suspended on first render.
+ * Matches the form's overall shape so the page doesn't shift when the
+ * client component hydrates.
+ */
+function SigninFormFallback() {
+  return (
+    <div
+      aria-hidden="true"
+      className="mx-auto w-full max-w-md animate-pulse space-y-6"
+    >
+      <div className="space-y-2">
+        <div className="h-7 w-32 rounded bg-surface-sage/60" />
+        <div className="h-4 w-56 rounded bg-surface-sage/40" />
+      </div>
+      <div className="h-12 rounded-xl bg-surface-sage/40" />
+      <div className="h-12 rounded-xl bg-surface-sage/40" />
+      <div className="h-12 rounded-xl bg-surface-sage/60" />
     </div>
   );
 }
