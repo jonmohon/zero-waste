@@ -16,20 +16,22 @@ export const metadata: Metadata = {
   description: "Browse our zero-waste product collections.",
 };
 
-/** Background images for known collection categories */
+/**
+ * Per-category background image for the collections grid. Each entry
+ * points at a real product webp under /public/products, so the image
+ * always matches the category it represents.
+ */
 const CATEGORY_IMAGES: Record<string, string> = {
+  "bar-soap": "/products/gentlemans-handmade-soap-bar-vegan-cold-process/1.webp",
+  "hair-care": "/products/hibar-curl-shampoo-bar/1.webp",
+  "skin-care": "/products/organic-lip-balm-sweet-orange/1.webp",
+  "oral-care": "/products/adult-toothbrush-standard-soft/1.webp",
+  "food-wraps": "/products/1-seller-assorted-3-pack-honeycomb/1.webp",
   "bath-&-body":
-    "https://images.unsplash.com/photo-1607006483224-a7c01c71c58d?w=800&q=85",
-  "hair-care":
-    "https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=800&q=85",
-  kitchen:
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=85",
-  laundry:
-    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&q=85",
-  "oral-hygiene":
-    "https://images.unsplash.com/photo-1559591937-abc79a8b6de6?w=800&q=85",
-  "skin-care":
-    "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&q=85",
+    "/products/moisturizing-vegan-body-wash-aloe-coconut-milk/1.webp",
+  "combs-&-brushes": "/products/bamboo-hair-brush/1.webp",
+  "home-&-decor": "/products/moso-bamboo-soap-shelf/1.webp",
+  kitchen: "/products/single-bamboo-straws/1.webp",
 };
 
 export default async function CollectionsPage() {

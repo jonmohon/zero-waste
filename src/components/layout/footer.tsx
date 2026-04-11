@@ -10,12 +10,12 @@ import Link from "next/link";
 /** Quick links displayed in the footer navigation */
 const QUICK_LINKS = [
   { label: "All Products", href: "/collections" },
-  { label: "Bath & Body", href: "/collections/bath-%26-body" },
+  { label: "Bar Soap", href: "/collections/bar-soap" },
   { label: "Hair Care", href: "/collections/hair-care" },
-  { label: "Kitchen", href: "/collections/kitchen" },
-  { label: "Laundry", href: "/collections/laundry" },
-  { label: "Oral Hygiene", href: "/collections/oral-hygiene" },
   { label: "Skin Care", href: "/collections/skin-care" },
+  { label: "Oral Care", href: "/collections/oral-care" },
+  { label: "Food Wraps", href: "/collections/food-wraps" },
+  { label: "Bath & Body", href: "/collections/bath-%26-body" },
 ] as const;
 
 /** Info links displayed in the footer */

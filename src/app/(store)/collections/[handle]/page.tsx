@@ -13,22 +13,6 @@ import type { Product, ProductCategory } from "@/lib/types";
 
 export const revalidate = 60;
 
-/** Background images for known collection categories */
-const CATEGORY_IMAGES: Record<string, string> = {
-  "bath-&-body":
-    "https://images.unsplash.com/photo-1607006483224-a7c01c71c58d?w=1200&q=85",
-  "hair-care":
-    "https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=1200&q=85",
-  kitchen:
-    "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=85",
-  laundry:
-    "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=1200&q=85",
-  "oral-hygiene":
-    "https://images.unsplash.com/photo-1559591937-abc79a8b6de6?w=1200&q=85",
-  "skin-care":
-    "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1200&q=85",
-};
-
 interface CollectionPageProps {
   params: Promise<{ handle: string }>;
 }
@@ -72,7 +56,10 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
   const { products } = await getProductsByCategory(category.id, region.id);
   const productList = products as Product[];
 
-  const bgImage = CATEGORY_IMAGES[category.handle] ?? null;
+  /* Use the first product's thumbnail as the header background. Always
+     matches the category — no hardcoded Unsplash mapping to drift. */
+  const bgImage =
+    productList[0]?.thumbnail ?? productList[0]?.images?.[0]?.url ?? null;
 
   return (
     <div className="bg-cream">

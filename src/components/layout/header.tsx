@@ -15,11 +15,11 @@ import { AuthNav } from "@/components/layout/auth-nav";
 /** Primary navigation links matching the store's categories */
 const NAV_LINKS = [
   { label: "All Products", href: "/collections" },
-  { label: "Bath & Body", href: "/collections/bath-%26-body" },
+  { label: "Bar Soap", href: "/collections/bar-soap" },
   { label: "Hair Care", href: "/collections/hair-care" },
-  { label: "Kitchen", href: "/collections/kitchen" },
-  { label: "Oral Hygiene", href: "/collections/oral-hygiene" },
   { label: "Skin Care", href: "/collections/skin-care" },
+  { label: "Oral Care", href: "/collections/oral-care" },
+  { label: "Food Wraps", href: "/collections/food-wraps" },
 ] as const;
 
 export function Header() {

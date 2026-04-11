@@ -21,20 +21,24 @@ const TYPEWRITER_WORDS = [
   "CRUELTY-FREE",
 ];
 
-/** Collection card data matching the artifact */
+/**
+ * Collection card data. Images are local product webp files so they
+ * always match the category. Star/review counts are placeholder marketing
+ * copy until real reviews exist.
+ */
 const COLLECTIONS = [
   {
-    href: "/collections/bath-%26-body",
-    image: "https://images.unsplash.com/photo-1607006483224-a7c01c71c58d?w=800&q=85",
-    category: "Bath & Body",
+    href: "/collections/bar-soap",
+    image: "/products/gentlemans-handmade-soap-bar-vegan-cold-process/1.webp",
+    category: "Bar Soap",
     stars: "\u2605\u2605\u2605\u2605\u2605",
     reviews: "159 reviews",
-    name: "Bath & Body Collection",
-    price: "From $3.79",
+    name: "Bar Soap Collection",
+    price: "From $4.99",
   },
   {
     href: "/collections/hair-care",
-    image: "https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=800&q=85",
+    image: "/products/hibar-curl-shampoo-bar/1.webp",
     category: "Hair Care",
     stars: "\u2605\u2605\u2605\u2605\u00bd",
     reviews: "90 reviews",
@@ -42,40 +46,40 @@ const COLLECTIONS = [
     price: "From $6.49",
   },
   {
-    href: "/collections/kitchen",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=85",
-    category: "Kitchen",
-    stars: "\u2605\u2605\u2605\u2605\u00bd",
-    reviews: "122 reviews",
-    name: "Kitchen Collection",
-    price: "From $5.49",
-  },
-  {
-    href: "/collections/laundry",
-    image: "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&q=85",
-    category: "Laundry",
-    stars: "\u2605\u2605\u2605\u2605\u2605",
-    reviews: "189 reviews",
-    name: "Laundry Collection",
-    price: "From $10.99",
-  },
-  {
-    href: "/collections/oral-hygiene",
-    image: "https://images.unsplash.com/photo-1559591937-abc79a8b6de6?w=800&q=85",
-    category: "Oral Hygiene",
-    stars: "\u2605\u2605\u2605\u2605\u00bd",
-    reviews: "74 reviews",
-    name: "Oral Hygiene Collection",
-    price: "From $4.99",
-  },
-  {
     href: "/collections/skin-care",
-    image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&q=85",
+    image: "/products/organic-lip-balm-sweet-orange/1.webp",
     category: "Skin Care",
     stars: "\u2605\u2605\u2605\u2605\u2605",
     reviews: "203 reviews",
     name: "Skin Care Collection",
     price: "From $8.99",
+  },
+  {
+    href: "/collections/oral-care",
+    image: "/products/adult-toothbrush-standard-soft/1.webp",
+    category: "Oral Care",
+    stars: "\u2605\u2605\u2605\u2605\u00bd",
+    reviews: "74 reviews",
+    name: "Oral Care Collection",
+    price: "From $4.99",
+  },
+  {
+    href: "/collections/food-wraps",
+    image: "/products/1-seller-assorted-3-pack-honeycomb/1.webp",
+    category: "Food Wraps",
+    stars: "\u2605\u2605\u2605\u2605\u00bd",
+    reviews: "122 reviews",
+    name: "Food Wraps Collection",
+    price: "From $5.49",
+  },
+  {
+    href: "/collections/bath-%26-body",
+    image: "/products/moisturizing-vegan-body-wash-aloe-coconut-milk/1.webp",
+    category: "Bath & Body",
+    stars: "\u2605\u2605\u2605\u2605\u2605",
+    reviews: "189 reviews",
+    name: "Bath & Body Collection",
+    price: "From $3.79",
   },
 ] as const;
 

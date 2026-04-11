@@ -7,43 +7,41 @@
 import Image from "next/image";
 import Link from "next/link";
 
-/** Category data with Unsplash images and collection routes */
+/**
+ * Category card data. Images are real product webp files served from
+ * /public/products, so they always match the category they represent.
+ */
 const CATEGORIES = [
   {
-    name: "Bath & Body",
-    href: "/collections/bath-%26-body",
-    image:
-      "https://images.unsplash.com/photo-1607006483224-a7c01c71c58d?w=800&q=85",
+    name: "Bar Soap",
+    href: "/collections/bar-soap",
+    image: "/products/gentlemans-handmade-soap-bar-vegan-cold-process/1.webp",
   },
   {
     name: "Hair Care",
     href: "/collections/hair-care",
-    image:
-      "https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=800&q=85",
-  },
-  {
-    name: "Kitchen",
-    href: "/collections/kitchen",
-    image:
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=85",
-  },
-  {
-    name: "Laundry",
-    href: "/collections/laundry",
-    image:
-      "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&q=85",
-  },
-  {
-    name: "Oral Hygiene",
-    href: "/collections/oral-hygiene",
-    image:
-      "https://images.unsplash.com/photo-1559591937-abc79a8b6de6?w=800&q=85",
+    image: "/products/hibar-curl-shampoo-bar/1.webp",
   },
   {
     name: "Skin Care",
     href: "/collections/skin-care",
+    image: "/products/organic-lip-balm-sweet-orange/1.webp",
+  },
+  {
+    name: "Oral Care",
+    href: "/collections/oral-care",
+    image: "/products/adult-toothbrush-standard-soft/1.webp",
+  },
+  {
+    name: "Food Wraps",
+    href: "/collections/food-wraps",
+    image: "/products/1-seller-assorted-3-pack-honeycomb/1.webp",
+  },
+  {
+    name: "Bath & Body",
+    href: "/collections/bath-%26-body",
     image:
-      "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&q=85",
+      "/products/moisturizing-vegan-body-wash-aloe-coconut-milk/1.webp",
   },
 ] as const;
 
