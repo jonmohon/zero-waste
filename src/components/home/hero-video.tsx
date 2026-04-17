@@ -50,8 +50,8 @@ export function HeroVideo() {
 
         {/* Subtitle */}
         <p className="mt-8 max-w-xl animate-fade-up text-base leading-relaxed text-white/70 sm:text-lg md:text-xl md:leading-relaxed">
-          Sustainable everyday products crafted with care. Join our community
-          of 500,000+ making small, impactful changes.
+          Sustainable everyday products, ships in compostable packaging,
+          curated for people making the swap to plastic-free living.
         </p>
 
         {/* CTA buttons */}

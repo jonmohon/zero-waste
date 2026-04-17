@@ -1,10 +1,10 @@
 /**
  * Header — top navigation bar rendered on every page via the root layout.
- * Redesigned to match a premium sustainable brand aesthetic with
- * deep green primary, accent green, and Montserrat typography.
+ * Premium sustainable brand aesthetic with deep green primary, accent
+ * green, and Montserrat typography.
  *
- * Server component — the mobile menu and auth nav are separate client
- * components composed inside this one.
+ * Server component — categories are fetched here and passed to the
+ * client-side ShopDropdown and MobileMenu so they don't each refetch.
  */
 import Link from "next/link";
 import Image from "next/image";
@@ -12,18 +12,23 @@ import { AnnouncementBar } from "@/components/layout/announcement-bar";
 import { MobileMenu } from "@/components/layout/mobile-menu";
 import { AuthNav } from "@/components/layout/auth-nav";
 import { CartIcon } from "@/components/cart/cart-icon";
+import { ShopDropdown } from "@/components/layout/shop-dropdown";
+import { TOP_NAV } from "@/components/layout/nav-data";
+import { getCategories } from "@/lib/medusa";
+import type { ProductCategory } from "@/lib/types";
 
-/** Primary navigation links matching the store's categories */
-const NAV_LINKS = [
-  { label: "All Products", href: "/collections" },
-  { label: "Bar Soap", href: "/collections/bar-soap" },
-  { label: "Hair Care", href: "/collections/hair-care" },
-  { label: "Skin Care", href: "/collections/skin-care" },
-  { label: "Oral Care", href: "/collections/oral-care" },
-  { label: "Food Wraps", href: "/collections/food-wraps" },
-] as const;
+export async function Header() {
+  /* Fetch categories server-side so the mega-dropdown ships with data
+     baked in. If Medusa is unreachable the dropdown gracefully shows
+     no categories — TOP_NAV links still resolve. */
+  let categories: ProductCategory[] = [];
+  try {
+    const result = (await getCategories()) as ProductCategory[];
+    categories = result.filter((c) => c.is_active);
+  } catch {
+    /* Backend unavailable — render with no categories, ISR will retry. */
+  }
 
-export function Header() {
   return (
     <header className="sticky top-0 z-50">
       <AnnouncementBar />
@@ -31,12 +36,7 @@ export function Header() {
       <div className="border-b border-primary/6 bg-white/90 shadow-[0_1px_4px_rgba(0,0,0,0.05)] backdrop-blur-xl backdrop-saturate-150">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-[72px] lg:px-8">
           {/* Mobile menu toggle (left side on mobile) */}
-          <MobileMenu
-            links={[
-              ...NAV_LINKS,
-              { label: "My Account", href: "/account" },
-            ]}
-          />
+          <MobileMenu topNav={TOP_NAV} categories={categories} />
 
           {/* Brand logo */}
           <Link
@@ -54,16 +54,20 @@ export function Header() {
           </Link>
 
           {/* Desktop navigation */}
-          <nav className="hidden items-center gap-7 lg:flex">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="relative font-heading text-[11px] font-semibold uppercase tracking-[0.1em] text-text-secondary transition-colors duration-200 hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[1.5px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <nav className="hidden items-center gap-8 lg:flex">
+            {TOP_NAV.map((item) =>
+              item.hasDropdown ? (
+                <ShopDropdown key={item.label} categories={categories} />
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="relative font-heading text-[11px] font-semibold uppercase tracking-[0.1em] text-text-secondary transition-colors duration-200 hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[1.5px] after:w-0 after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </nav>
 
           {/* Right-side actions: auth + cart */}

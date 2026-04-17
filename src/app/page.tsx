@@ -1,16 +1,22 @@
 // Route: /
-// Homepage — premium redesign with cinematic hero, trust stats, category grid,
-// bestsellers from Medusa, value props, press bar, brand story, and newsletter.
+// Homepage — cinematic hero, live impact counter, category grid,
+// bestsellers, interactive bundle builder, value props, the swap
+// comparator, press strip, customer testimonials, brand story,
+// journal preview, and pledge CTA.
 // Server component that fetches products at request time.
 // Revalidates every 60 seconds (ISR).
 import { HeroVideo } from "@/components/home/hero-video";
-import { StatsBar } from "@/components/home/stats-bar";
+import { ImpactCounter } from "@/components/home/impact-counter";
 import { ShopByCategory } from "@/components/home/shop-by-category";
 import { Bestsellers } from "@/components/home/bestsellers";
+import { BundleBuilder } from "@/components/home/bundle-builder";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
+import { TheSwap } from "@/components/home/the-swap";
 import { PressBar } from "@/components/home/press-bar";
+import { Testimonials } from "@/components/home/testimonials";
 import { BrandStory } from "@/components/home/brand-story";
-import { Newsletter } from "@/components/home/newsletter";
+import { JournalPreview } from "@/components/home/journal-preview";
+import { PickYourPledge } from "@/components/home/pick-your-pledge";
 import { getProducts, getRegion } from "@/lib/medusa";
 import type { Product } from "@/lib/types";
 
@@ -30,13 +36,17 @@ export default async function HomePage() {
   return (
     <>
       <HeroVideo />
-      <StatsBar />
+      <ImpactCounter />
       <ShopByCategory />
       <Bestsellers products={products} />
+      <BundleBuilder />
       <WhyChooseUs />
+      <TheSwap />
       <PressBar />
+      <Testimonials />
       <BrandStory />
-      <Newsletter />
+      <JournalPreview />
+      <PickYourPledge />
     </>
   );
 }

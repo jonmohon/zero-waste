@@ -21,6 +21,7 @@ const QUICK_LINKS = [
 /** Info links displayed in the footer */
 const INFO_LINKS = [
   { label: "About Us", href: "/about" },
+  { label: "Journal", href: "/blog" },
   { label: "Contact", href: "/contact" },
   { label: "Shipping & Returns", href: "/shipping" },
   { label: "Privacy Policy", href: "/privacy" },
