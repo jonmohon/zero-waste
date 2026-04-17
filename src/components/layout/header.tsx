@@ -33,8 +33,8 @@ export async function Header() {
     <header className="sticky top-0 z-50">
       <AnnouncementBar />
 
-      <div className="border-b border-primary/6 bg-white/90 shadow-[0_1px_4px_rgba(0,0,0,0.05)] backdrop-blur-xl backdrop-saturate-150">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-[72px] lg:px-8">
+      <div className="border-b border-primary/6 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.05)]">
+        <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8">
           {/* Mobile menu toggle (left side on mobile) */}
           <MobileMenu topNav={TOP_NAV} categories={categories} />
 
@@ -46,9 +46,9 @@ export async function Header() {
             <Image
               src="/images/logo.webp"
               alt="The Zero Waste Store"
-              width={160}
-              height={160}
-              className="h-11 w-auto sm:h-13 lg:h-[60px]"
+              width={200}
+              height={120}
+              className="h-11 w-auto py-1 sm:h-12 lg:h-14"
               priority
             />
           </Link>

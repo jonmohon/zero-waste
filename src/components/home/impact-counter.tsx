@@ -90,7 +90,10 @@ function Stat({
 }) {
   return (
     <div className="bg-white px-6 py-8 text-center sm:py-10">
+      {/* suppressHydrationWarning: this counter is intentionally time-based,
+          so the value will tick between server render and client hydration. */}
       <span
+        suppressHydrationWarning
         className={`block bg-gradient-to-r ${accent} bg-clip-text font-heading text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl lg:text-5xl`}
       >
         {value}
