@@ -12,6 +12,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface Pledge {
   key: string;
@@ -100,8 +101,19 @@ export function PickYourPledge() {
   const activePledge = PLEDGES.find((p) => p.key === pledged);
 
   return (
-    <section className="bg-surface-sage/40 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <div className="mx-auto max-w-5xl">
+    <section className="relative overflow-hidden bg-surface-sage/40 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      {/* Aspirational seedlings image as a soft right-side accent on desktop. */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/3 lg:block">
+        <Image
+          src="/images/flair/pledge-bg.webp"
+          alt=""
+          fill
+          sizes="33vw"
+          className="object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-surface-sage/40 via-surface-sage/20 to-transparent" />
+      </div>
+      <div className="relative mx-auto max-w-5xl">
         {/* Section header */}
         <div className="mb-10 text-center">
           <div className="mb-3 flex items-center justify-center gap-2.5 font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-accent">

@@ -3,6 +3,7 @@
 // Static content; the form is a client component that does not yet hit a
 // backend (visual-only submit). Statically generated at build time.
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ContactForm } from "@/components/contact/contact-form";
 import { FaqAccordion, type FaqItem } from "@/components/contact/faq-accordion";
 
@@ -72,8 +73,17 @@ export default function ContactPage() {
   return (
     <div className="bg-cream">
       {/* Hero */}
-      <section className="bg-primary px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div className="mx-auto max-w-4xl text-center">
+      <section className="relative overflow-hidden bg-primary px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <Image
+          src="/images/heroes/contact-hero.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/60 to-primary" />
+        <div className="relative mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-5 py-2 backdrop-blur-md">
             <span className="h-1.5 w-1.5 animate-[pulse-dot_2s_ease-in-out_infinite] rounded-full bg-accent" />
             <span className="font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-white/85">

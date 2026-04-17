@@ -15,8 +15,8 @@ export function BrandStory() {
         {/* Left — editorial image */}
         <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
           <Image
-            src="https://images.unsplash.com/photo-1602928321679-560bb453f190?w=1200&q=85"
-            alt="Natural artisan soap bars arranged on a wooden surface"
+            src="/images/flair/brand-story.webp"
+            alt="Hands wrapping an artisan soap bar in kraft paper with twine"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"

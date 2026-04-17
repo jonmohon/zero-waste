@@ -149,6 +149,20 @@ export function BundleBuilder() {
 
   return (
     <section className="bg-white px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      {/* Decorative accent strip above the section header, ties the feature
+          to the rest of the brand imagery without competing with the cards. */}
+      <div className="mx-auto mb-10 max-w-6xl">
+        <div className="relative aspect-[16/4] overflow-hidden rounded-2xl">
+          <Image
+            src="/images/flair/bundle-accent.webp"
+            alt=""
+            fill
+            sizes="(max-width: 1024px) 100vw, 1152px"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/30" />
+        </div>
+      </div>
       <div className="mx-auto max-w-6xl">
         {/* Section header */}
         <div className="mb-10 text-center">

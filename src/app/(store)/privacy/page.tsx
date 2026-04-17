@@ -2,6 +2,7 @@
 // Privacy policy page. Static long-form content. Plain-language overview
 // of what we collect, how we use it, and your rights.
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -13,8 +14,17 @@ export default function PrivacyPage() {
   return (
     <div className="bg-cream">
       {/* Hero */}
-      <section className="bg-primary px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-4xl text-center">
+      <section className="relative overflow-hidden bg-primary px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <Image
+          src="/images/heroes/privacy-hero.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/60 to-primary" />
+        <div className="relative mx-auto max-w-4xl text-center">
           <p className="mb-3 font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-accent">
             Legal
           </p>

@@ -11,6 +11,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 /**
  * Per-category swap data. Numbers are reasonable estimates pulled from
@@ -122,8 +123,17 @@ export function TheSwap() {
   const active = SWAPS.find((s) => s.key === activeKey) ?? SWAPS[0];
 
   return (
-    <section className="bg-cream px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <div className="mx-auto max-w-6xl">
+    <section className="relative overflow-hidden bg-cream px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      {/* Subtle conceptual divider image, low opacity so the section content stays readable. */}
+      <Image
+        src="/images/flair/the-swap-divider.webp"
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover opacity-[0.08]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-cream via-cream/85 to-cream" />
+      <div className="relative mx-auto max-w-6xl">
         {/* Section header */}
         <div className="mb-10 text-center">
           <div className="mb-3 flex items-center justify-center gap-2.5 font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-accent">

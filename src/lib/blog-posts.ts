@@ -52,8 +52,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Maya Linden",
     date: "2026-04-09",
     readTime: 6,
-    heroImage:
-      "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600&q=85",
+    heroImage: "/images/blog/bathroom-swaps.webp",
     body: [
       {
         type: "p",
@@ -123,8 +122,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "James Okafor",
     date: "2026-03-22",
     readTime: 5,
-    heroImage:
-      "https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=1600&q=85",
+    heroImage: "/images/blog/plastic-free-shipping.webp",
     body: [
       {
         type: "p",
@@ -169,8 +167,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Priya Anand",
     date: "2026-03-08",
     readTime: 7,
-    heroImage:
-      "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=1600&q=85",
+    heroImage: "/images/blog/bar-shampoo-guide.webp",
     body: [
       {
         type: "p",
@@ -233,8 +230,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "James Okafor",
     date: "2026-02-20",
     readTime: 5,
-    heroImage:
-      "https://images.unsplash.com/photo-1610736703500-d8b1bea5ef85?w=1600&q=85",
+    heroImage: "/images/blog/beeswax-wraps.webp",
     body: [
       {
         type: "p",
@@ -284,8 +280,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Sam Reyes",
     date: "2026-02-04",
     readTime: 4,
-    heroImage:
-      "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=1600&q=85",
+    heroImage: "/images/blog/safety-razor-real-cost.webp",
     body: [
       {
         type: "p",
@@ -323,8 +318,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: "Maya Linden",
     date: "2026-01-15",
     readTime: 6,
-    heroImage:
-      "https://images.unsplash.com/photo-1602928321679-560bb453f190?w=1600&q=85",
+    heroImage: "/images/blog/soap-makers-workshop.webp",
     body: [
       {
         type: "p",

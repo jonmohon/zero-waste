@@ -3,6 +3,7 @@
 // impact, CTA. All client-specific copy uses [bracketed placeholders]
 // for the client to fill in. Statically generated at build time.
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { FoundersLetter } from "@/components/about/founders-letter";
 
@@ -71,7 +72,15 @@ export default function AboutPage() {
     <div className="bg-cream">
       {/* Hero */}
       <section className="relative overflow-hidden bg-primary">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/60 via-primary/40 to-primary" />
+        <Image
+          src="/images/heroes/about-hero.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/55 to-primary" />
         <div className="relative mx-auto max-w-5xl px-4 py-24 text-center sm:px-6 lg:px-8 lg:py-32">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-5 py-2 backdrop-blur-md">
             <span className="h-1.5 w-1.5 animate-[pulse-dot_2s_ease-in-out_infinite] rounded-full bg-accent" />

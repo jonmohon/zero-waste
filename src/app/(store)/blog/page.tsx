@@ -20,8 +20,17 @@ export default function BlogPage() {
   return (
     <div className="bg-cream">
       {/* Hero */}
-      <section className="bg-primary px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div className="mx-auto max-w-4xl text-center">
+      <section className="relative overflow-hidden bg-primary px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <Image
+          src="/images/heroes/blog-hero.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/75 via-primary/60 to-primary" />
+        <div className="relative mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/8 px-5 py-2 backdrop-blur-md">
             <span className="h-1.5 w-1.5 animate-[pulse-dot_2s_ease-in-out_infinite] rounded-full bg-accent" />
             <span className="font-heading text-[10px] font-bold uppercase tracking-[0.2em] text-white/85">
@@ -148,8 +157,16 @@ export default function BlogPage() {
       )}
 
       {/* Newsletter strip */}
-      <section className="bg-surface-sage/40 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-3xl text-center">
+      <section className="relative overflow-hidden bg-surface-sage/40 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <Image
+          src="/images/flair/newsletter-bg.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.18]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-surface-sage/30 via-surface-sage/50 to-surface-sage/30" />
+        <div className="relative mx-auto max-w-3xl text-center">
           <h2 className="font-serif text-3xl font-semibold italic leading-tight text-primary sm:text-4xl">
             Get new posts in your inbox
           </h2>
