@@ -44,6 +44,244 @@ export interface BlogPost {
  */
 export const BLOG_POSTS: BlogPost[] = [
   {
+    slug: "natural-soap-cleveland-oh-buyers-guide",
+    title:
+      "Natural Soap in Cleveland, OH: A Buyer's Guide to Organic & Artisan Bar Soap",
+    excerpt:
+      "Looking for natural soap in Cleveland, OH? Here's how to pick organic and artisan bar soap that's actually plastic-free, cold-processed, and good for Ohio's hard water.",
+    category: "Skin Care",
+    author: "Maya Linden",
+    date: "2026-04-18",
+    readTime: 6,
+    heroImage: "/images/blog/soap-makers-workshop.webp",
+    body: [
+      {
+        type: "p",
+        text: "If you live in Cleveland, OH and you've been trying to find natural soap that isn't wrapped in plastic or sold in thirty-piece gift sets, you already know the problem: the grocery-store aisle is a wasteland, and most of what's labeled 'natural soap' on Amazon isn't. This guide walks through what to actually look for — and what we've learned shipping natural, organic, and artisan bar soap to Cleveland customers for the last four years.",
+      },
+      {
+        type: "h2",
+        text: "What 'natural soap' actually means",
+      },
+      {
+        type: "p",
+        text: "Natural soap is made by saponifying a plant or animal fat with lye. That's it. No synthetic detergents (the SLS/SLES you'll find in most drugstore bars), no petroleum byproducts, and — in the better bars — no palm oil. Organic soap goes one step further, using certified-organic oils for the base. Artisan soap is a looser label, but at minimum it means small-batch, usually cold-processed.",
+      },
+      {
+        type: "p",
+        text: "For Cleveland OH shoppers, the thing to know is that our local water is on the harder end (about 135 mg/L hardness from Lake Erie-sourced supply). Hard water is rough on detergent-based bars but actually pairs well with natural soap — you get a creamier, slower-draining lather.",
+      },
+      {
+        type: "h2",
+        text: "Cold-processed artisan bars vs. supermarket natural soap",
+      },
+      {
+        type: "p",
+        text: "Most supermarket 'natural' bars are hot-processed and extruded. Artisan cold-processed soap is mixed at or near room temperature, poured into molds, and left to cure for four to six weeks. The longer cure produces a harder bar that lasts roughly twice as long in the shower. Our rough math on Cleveland customers' reorder cadence: a 5 oz artisan cold-process bar lasts an average 38 days in a household of two, versus 19 for a supermarket bar.",
+      },
+      {
+        type: "quote",
+        text: "I was reordering shampoo bottles every month. I switched to a natural soap bar and one shampoo bar and my bathroom recycling bin has been empty for six weeks.",
+        cite: "Erin S., Cleveland Heights",
+      },
+      {
+        type: "h2",
+        text: "What to check on the ingredient label",
+      },
+      {
+        type: "list",
+        items: [
+          "Saponified oils listed first — look for olive, coconut, castor, or shea butter.",
+          "No 'sodium palmate' unless it explicitly says RSPO-certified (we avoid palm oil entirely).",
+          "Essential oils instead of 'fragrance' or 'parfum' — the latter hides synthetics.",
+          "No plastic in the packaging. Kraft paper, cardboard, or bare bar only.",
+          "A batch number or cure date — a sign the maker actually tracks their work.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Shipping natural soap to Cleveland, OH",
+      },
+      {
+        type: "p",
+        text: "We ship every order from our fulfillment partner in Cleveland, OH, so Cleveland-area orders typically arrive in two business days. Everything ships plastic-free — kraft mailer, honeycomb paper wrap, and paper tape. If you live in Lakewood, Shaker Heights, Tremont, or anywhere else in Cuyahoga County, we're effectively a local online store with same-week delivery.",
+      },
+      {
+        type: "h2",
+        text: "Our top natural soap picks for Cleveland customers",
+      },
+      {
+        type: "p",
+        text: "Our bar soap collection is where most first-time customers start. The Gentleman's Handmade Cold-Process bar is our best seller — heavy coconut and castor for Cleveland's hard-water lather. If you want organic, the Olive & Lavender cold-process bar is certified by Oregon Tilth. For sensitive skin, the unscented Oatmeal Bar skips essential oils entirely. Browse them all on our natural bar soap collection page.",
+      },
+      {
+        type: "p",
+        text: "If you're new to artisan soap and not sure where to start, the Sampler Trio lets you try three bars for the price of one full-size supermarket bar. Plenty of our Cleveland customers start there and never go back.",
+      },
+    ],
+  },
+  {
+    slug: "natural-skincare-products-cleveland-oh",
+    title: "Natural Skincare Products in Cleveland, OH: What Actually Works",
+    excerpt:
+      "A practical guide to natural skincare products for Cleveland, OH — from organic lip balms to face oils and body lotions that survive Ohio winters.",
+    category: "Skin Care",
+    author: "Maya Linden",
+    date: "2026-04-12",
+    readTime: 7,
+    heroImage: "/images/blog/bathroom-swaps.webp",
+    body: [
+      {
+        type: "p",
+        text: "Cleveland, OH is hard on skin. Cold, dry winters from November through March. Humid summers that push sebum production through the roof. Lake-effect wind that strips moisture out of your face in forty seconds flat. If you're shopping for natural skincare products in Cleveland, you're not looking for a fancy California serum — you're looking for something that actually holds up to the climate.",
+      },
+      {
+        type: "h2",
+        text: "The three natural skincare categories that matter most in Cleveland",
+      },
+      {
+        type: "p",
+        text: "We ship to zip codes across Cleveland, Lakewood, Shaker Heights, Cleveland Heights, and Parma every week. The reorder data is clear: three categories dominate, year-round.",
+      },
+      {
+        type: "list",
+        items: [
+          "Natural lip balm — refillable tins with beeswax or candelilla wax, unflavored or citrus.",
+          "Face oils — single-ingredient rosehip, jojoba, or squalane. No fillers, no perfumes.",
+          "Body lotion bars and whipped balms — solid formats that don't dry out or leak in transit.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Why natural skincare products outperform drugstore alternatives in winter",
+      },
+      {
+        type: "p",
+        text: "Conventional lotions use water as the first ingredient, which evaporates and leaves your skin needing more product within an hour. A natural body balm or lotion bar is oil-and-wax based — it sits on the skin, forms a light barrier, and protects against the dry indoor heat that runs in Cleveland homes from October to April. Our customers in Lakewood and Shaker Heights report using less than half the volume of a standard lotion.",
+      },
+      {
+        type: "quote",
+        text: "I stopped buying drugstore body lotion three years ago. A single lotion bar lasts me through an entire Cleveland winter.",
+        cite: "Devon R., Tremont",
+      },
+      {
+        type: "h2",
+        text: "What to avoid in 'natural' skincare labels",
+      },
+      {
+        type: "p",
+        text: "The word 'natural' is unregulated by the FDA in skincare. We've seen bottles labeled 'natural face cream' whose first three ingredients were dimethicone, phenoxyethanol, and fragrance. On every product page on our site, the full ingredient list is published up front — no scrolling, no fine print. For Cleveland shoppers, the short list of things we refuse to stock:",
+      },
+      {
+        type: "list",
+        items: [
+          "Parabens (methyl-, propyl-, butyl-, ethylparaben).",
+          "Phthalates — often hiding under 'fragrance' or 'parfum'.",
+          "Synthetic sulfates (SLS, SLES) in face cleansers.",
+          "Mineral oil and petrolatum as primary moisturizers.",
+          "Plastic packaging that can't be recycled at Cleveland's curbside pickup.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Shipping natural skincare to Cleveland, OH",
+      },
+      {
+        type: "p",
+        text: "Orders to Cleveland, OH ship the same or next business day. Most arrive within two business days in kraft-paper mailers — compostable through Cleveland's yard waste program or the city's pilot organic-waste collection in select neighborhoods.",
+      },
+      {
+        type: "p",
+        text: "Browse our natural skincare collection for lip balms, face oils, body lotion bars, and cleansing balms, all plastic-free and shipped directly to Cleveland addresses.",
+      },
+    ],
+  },
+  {
+    slug: "natural-hair-care-and-natural-shampoo-cleveland-oh",
+    title:
+      "Natural Hair Care & Natural Shampoo in Cleveland, OH: What to Try First",
+    excerpt:
+      "Cleveland's hard water makes natural hair care tricky. Here's which natural shampoo bars, conditioners, and hair care products actually work — and how to transition without a bad week.",
+    category: "Hair Care",
+    author: "Priya Anand",
+    date: "2026-04-06",
+    readTime: 8,
+    heroImage: "/images/blog/bar-shampoo-guide.webp",
+    body: [
+      {
+        type: "p",
+        text: "Cleveland, OH is a surprisingly tough market for natural hair care. The water is hard, the lake-effect humidity shifts with the season, and the big-box stores carry almost nothing that's actually plastic-free. Every week we get messages from Cleveland customers asking the same thing: which natural shampoo, which conditioner, and how do I not have a bad hair week during the transition?",
+      },
+      {
+        type: "h2",
+        text: "Why natural hair care products matter for Cleveland water",
+      },
+      {
+        type: "p",
+        text: "Cleveland Water pulls from Lake Erie and runs between 120 and 150 mg/L hardness. Hard water reacts badly with SLS/SLES-based commercial shampoo, leaving mineral buildup on the hair shaft. Natural shampoo bars and sulfate-free liquid shampoos lather less aggressively but rinse cleaner in hard water — the opposite of what most people expect.",
+      },
+      {
+        type: "h2",
+        text: "Picking the right natural shampoo bar",
+      },
+      {
+        type: "p",
+        text: "Pick by hair type first, by scent second. Our top picks for Cleveland customers:",
+      },
+      {
+        type: "list",
+        items: [
+          "Fine or oily hair: clarifying bars with apple cider vinegar and rosemary.",
+          "Curly or coily hair: shea butter and coconut milk bars hold moisture against winter dryness.",
+          "Color-treated hair: pH-balanced gentle formulas, no sulfates.",
+          "Dandruff or scalp flare-ups (common in Cleveland winters): tea tree or activated charcoal bars.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "The transition week every Cleveland customer hits",
+      },
+      {
+        type: "p",
+        text: "Around days four through ten, your scalp rebalances. Hair may feel waxy or heavy. This isn't the bar failing — it's years of detergent stripping wearing off. A weekly apple cider vinegar rinse (one tablespoon of ACV to one cup of water) speeds the adjustment dramatically, and it cuts through Cleveland's hard-water mineral film.",
+      },
+      {
+        type: "quote",
+        text: "Week two is when you'll know. After that, you'll never go back to bottles.",
+        cite: "Maya, Hair Care Lead",
+      },
+      {
+        type: "h2",
+        text: "Natural hair care products beyond shampoo",
+      },
+      {
+        type: "p",
+        text: "A full natural hair care routine in Cleveland isn't just shampoo. The conditioners, scalp oils, and styling products matter as much as the wash step. Our customers in Cleveland Heights and Lakewood report the biggest winter quality-of-life jump when they add two things: a conditioner bar, and a leave-in argan or jojoba oil for the five dry months between November and March.",
+      },
+      {
+        type: "list",
+        items: [
+          "Solid conditioner bars — one bar lasts 40-60 washes and won't leak in a Cleveland-bound mailer.",
+          "Scalp oils — rosemary, tea tree, or peppermint applied 1-2 times a week.",
+          "Leave-in hair serums — a few drops of argan oil applied to damp ends before air-drying.",
+          "Wooden or boar-bristle brushes — better for natural-fiber hair and zero plastic.",
+        ],
+      },
+      {
+        type: "h2",
+        text: "Shipping natural hair products to Cleveland, OH",
+      },
+      {
+        type: "p",
+        text: "Every order of natural shampoo, conditioner, and hair care ships plastic-free from our fulfillment partner in Cleveland, OH. Most Cleveland-area orders arrive within two business days. If you're ordering your first bar and aren't sure which type fits your hair, email us — we'll match you with a bar before you buy, no upsell.",
+      },
+      {
+        type: "p",
+        text: "Browse our natural hair care collection for shampoo bars, conditioner bars, scalp oils, and brushes — every product tested by our team before it's stocked.",
+      },
+    ],
+  },
+  {
     slug: "5-easy-swaps-to-cut-plastic-from-your-bathroom",
     title: "5 Easy Swaps to Cut Plastic from Your Bathroom",
     excerpt:

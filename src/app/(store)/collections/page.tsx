@@ -12,8 +12,11 @@ import type { ProductCategory } from "@/lib/types";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Collections",
-  description: "Browse our zero-waste product collections.",
+  title:
+    "Natural Soap, Organic Skincare & Hair Care Collections",
+  description:
+    "Shop natural soap, organic skincare, artisan bar soap, natural shampoo, and plastic-free hair care. Curated zero-waste collections shipped to Cleveland, OH and nationwide.",
+  alternates: { canonical: "/collections" },
 };
 
 /**
@@ -62,11 +65,14 @@ export default async function CollectionsPage() {
           </nav>
 
           <h1 className="font-serif text-4xl font-semibold italic text-primary sm:text-5xl lg:text-6xl">
-            Our Collections
+            Natural Soap, Organic Skincare &amp; Artisan Hair Care
           </h1>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-text-secondary">
-            Browse our curated zero-waste product collections. Every item is
-            thoughtfully selected for sustainability, quality, and impact.
+            Browse our curated zero-waste collections &mdash; natural and
+            organic bar soap, artisan skincare, natural shampoo, and
+            plastic-free hair care products. Every item is thoughtfully
+            selected for sustainability, quality, and impact, and shipped
+            plastic-free to Cleveland, OH and across the US.
           </p>
         </div>
       </div>

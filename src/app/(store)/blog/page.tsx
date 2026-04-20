@@ -7,9 +7,10 @@ import Link from "next/link";
 import { getAllPosts, formatPostDate } from "@/lib/blog-posts";
 
 export const metadata: Metadata = {
-  title: "Journal",
+  title: "Journal — Natural Soap, Skincare & Hair Care Guides",
   description:
-    "Practical guides, swap stories, and supplier features from the Zero Waste Simplified team.",
+    "Practical guides on natural soap, organic skincare, natural shampoo, and artisan hair care. Swap stories and supplier features from the Zero Waste Simplified team.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {
@@ -23,7 +24,7 @@ export default function BlogPage() {
       <section className="relative overflow-hidden bg-primary px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <Image
           src="/images/heroes/blog-hero.webp"
-          alt=""
+          alt="The Zero Waste Simplified journal — guides on natural soap, organic skincare, and natural hair care"
           fill
           sizes="100vw"
           className="object-cover"
@@ -41,8 +42,10 @@ export default function BlogPage() {
             Stories &amp; swaps.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
-            Practical guides for living with less plastic, supplier features,
-            and the occasional opinion on consumer waste.
+            Practical guides on natural soap, organic skincare, natural
+            shampoo, and artisan hair care &mdash; plus supplier features
+            and the occasional opinion on consumer waste. Written for
+            readers in Cleveland, OH and across the US.
           </p>
         </div>
       </section>

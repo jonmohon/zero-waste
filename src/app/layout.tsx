@@ -29,14 +29,112 @@ const openSans = Open_Sans({
   display: "swap",
 });
 
-/** Default metadata — individual pages can override via their own export */
+const SITE_URL = "https://zerowastesimplified.com";
+
+/**
+ * Default metadata — individual pages override via their own export.
+ *
+ * `metadataBase` is required for Next.js to resolve relative OG image URLs
+ * into absolute ones. Title template applies sitewide; the default title
+ * and description target the primary keyword cluster (natural / organic /
+ * artisan soap + skincare + hair care, shipping to Cleveland, OH).
+ */
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "The Zero Waste Store — Sustainable Products",
-    template: "%s | The Zero Waste Store",
+    default:
+      "Natural Soap, Organic Skincare & Artisan Hair Care | Zero Waste Simplified",
+    template: "%s | Zero Waste Simplified",
   },
   description:
-    "Shop sustainable, zero-waste products for everyday living. Saving the planet, one eco product at a time.",
+    "Shop natural soap, organic skincare, artisan hair care, and natural shampoo online. Plastic-free, small-batch products shipped to Cleveland, OH and across the US.",
+  keywords: [
+    "natural soap Cleveland OH",
+    "organic soap Cleveland OH",
+    "artisan soap Cleveland OH",
+    "natural skincare products Cleveland OH",
+    "natural hair products Cleveland OH",
+    "natural hair care products Cleveland OH",
+    "natural shampoo Cleveland OH",
+    "zero waste store",
+    "plastic-free products",
+    "eco-friendly skincare",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: SITE_URL,
+    siteName: "Zero Waste Simplified",
+    title:
+      "Natural Soap, Organic Skincare & Artisan Hair Care | Zero Waste Simplified",
+    description:
+      "Natural soap, organic skincare, and artisan hair care — plastic-free and shipped to Cleveland, OH and across the US.",
+    images: [
+      {
+        url: "/og-default.webp",
+        width: 1200,
+        height: 630,
+        alt: "Zero Waste Simplified — natural soap, organic skincare, and artisan hair care",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Natural Soap, Organic Skincare & Artisan Hair Care | Zero Waste Simplified",
+    description:
+      "Plastic-free natural soap, organic skincare, and artisan hair care — shipped to Cleveland, OH and across the US.",
+    images: ["/og-default.webp"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+};
+
+/**
+ * Organization schema emitted sitewide so Google can attribute every page
+ * to the same legal entity. Uses the store's public email addresses and
+ * primary service area (Cleveland, OH + nationwide US shipping).
+ */
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Zero Waste Simplified",
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  description:
+    "Online zero-waste store offering natural soap, organic skincare, artisan hair care, and natural shampoo. Ships to Cleveland, OH and across the United States.",
+  areaServed: [
+    { "@type": "City", name: "Cleveland", containedInPlace: "Ohio" },
+    { "@type": "Country", name: "United States" },
+  ],
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      email: "hello@zerowastesimplified.com",
+      contactType: "customer support",
+      availableLanguage: ["English"],
+    },
+    {
+      "@type": "ContactPoint",
+      email: "press@zerowastesimplified.com",
+      contactType: "press",
+    },
+    {
+      "@type": "ContactPoint",
+      email: "wholesale@zerowastesimplified.com",
+      contactType: "wholesale",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -50,6 +148,10 @@ export default function RootLayout({
       className={`${cormorant.variable} ${montserrat.variable} ${openSans.variable}`}
     >
       <body className="flex min-h-screen flex-col bg-cream font-sans text-primary antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

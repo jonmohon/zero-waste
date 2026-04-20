@@ -17,6 +17,55 @@ interface CollectionPageProps {
   params: Promise<{ handle: string }>;
 }
 
+/**
+ * Visible intro copy that renders under the H1 for the three primary
+ * keyword clusters. Works in tandem with COLLECTION_SEO (head tags) —
+ * this is the on-page prose that search engines crawl as body content.
+ */
+const KEYWORD_INTROS: Record<string, string> = {
+  "bar-soap":
+    "Shop natural soap, organic soap, and artisan bar soap — cold-processed in small batches by US makers, palm-oil-free, and shipped plastic-free to Cleveland, OH and across the United States.",
+  "skin-care":
+    "Natural skincare products — organic lip balms, face oils, body lotions, and balms. Clean ingredients, plastic-free packaging, shipped to Cleveland, OH and nationwide.",
+  "hair-care":
+    "Natural hair products and natural hair care products — including natural shampoo bars, conditioners, and scalp care. Sulfate-free, plastic-free, and shipped to Cleveland, OH and across the US.",
+  "bath-&-body":
+    "Natural, plastic-free bath and body essentials — bar soap, body wash, safety razors, and more. Shipped to Cleveland, OH and nationwide.",
+};
+
+/**
+ * Per-category SEO overrides. For collections mapped to our primary
+ * keyword clusters (bar soap, skin care, hair care) we inject keyword-
+ * optimized title/description copy that mentions Cleveland, OH shipping.
+ * Other collections fall back to Medusa's category name + description.
+ */
+const COLLECTION_SEO: Record<
+  string,
+  { title: string; description: string }
+> = {
+  "bar-soap": {
+    title: "Natural Soap, Organic & Artisan Bar Soap | Cleveland OH Shipping",
+    description:
+      "Shop natural soap, organic soap, and artisan bar soap from small-batch US makers. Cold-processed, palm-oil-free, and shipped plastic-free to Cleveland, OH and across the US.",
+  },
+  "skin-care": {
+    title: "Natural Skincare Products | Organic, Plastic-Free | Cleveland OH",
+    description:
+      "Natural skincare products — organic lip balm, face oils, body lotions, and balms. Clean ingredients, plastic-free packaging, shipped to Cleveland, OH and nationwide.",
+  },
+  "hair-care": {
+    title:
+      "Natural Hair Care Products & Natural Shampoo | Cleveland OH Shipping",
+    description:
+      "Natural hair products, natural hair care products, and natural shampoo bars for every hair type. Sulfate-free and plastic-free, shipped to Cleveland, OH and across the US.",
+  },
+  "bath-&-body": {
+    title: "Natural Bath & Body Products | Plastic-Free | Cleveland OH",
+    description:
+      "Natural, plastic-free bath and body essentials — bar soap, body wash, safety razors, and more. Shipped to Cleveland, OH and nationwide.",
+  },
+};
+
 export async function generateMetadata({
   params,
 }: CollectionPageProps): Promise<Metadata> {
@@ -28,9 +77,18 @@ export async function generateMetadata({
       (c) => c.handle === handle || c.handle === decodedHandle
     );
 
+    const seoOverride =
+      COLLECTION_SEO[handle] ?? COLLECTION_SEO[decodedHandle];
+
     return {
-      title: category?.name ?? "Collection",
-      description: category?.description ?? undefined,
+      title: seoOverride?.title ?? category?.name ?? "Collection",
+      description:
+        seoOverride?.description ??
+        category?.description ??
+        "Browse our curated zero-waste collection — plastic-free, natural, and shipped nationwide.",
+      alternates: {
+        canonical: `/collections/${decodedHandle}`,
+      },
     };
   } catch {
     return { title: "Collection" };
@@ -61,8 +119,34 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
   const bgImage =
     productList[0]?.thumbnail ?? productList[0]?.images?.[0]?.url ?? null;
 
+  /* BreadcrumbList JSON-LD mirroring the visible trail. */
+  const SITE_URL = "https://zerowastesimplified.com";
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Collections",
+        item: `${SITE_URL}/collections`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: category.name,
+        item: `${SITE_URL}/collections/${decodedHandle}`,
+      },
+    ],
+  };
+
   return (
     <div className="bg-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* Collection header with background image */}
       <div className="relative overflow-hidden">
         {/* Background image or solid fallback */}
@@ -105,11 +189,24 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
           <h1 className="font-serif text-4xl font-semibold italic text-white drop-shadow-lg sm:text-5xl lg:text-6xl">
             {category.name}
           </h1>
-          {category.description && (
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70">
-              {category.description}
-            </p>
-          )}
+          {(() => {
+            /* Intro copy: for the three keyword-target collections we
+               inject SEO-optimized prose that names the local service
+               area. Falls back to whatever description Medusa returns. */
+            const intro = KEYWORD_INTROS[handle] ?? KEYWORD_INTROS[decodedHandle];
+            if (intro) {
+              return (
+                <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/75">
+                  {intro}
+                </p>
+              );
+            }
+            return category.description ? (
+              <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70">
+                {category.description}
+              </p>
+            ) : null;
+          })()}
 
           {/* Product count badge */}
           {productList.length > 0 && (

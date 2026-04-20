@@ -33,6 +33,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -44,6 +45,8 @@ export async function generateMetadata({
   };
 }
 
+const SITE_URL = "https://zerowastesimplified.com";
+
 export default async function ArticlePage({ params }: ArticleProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -51,8 +54,59 @@ export default async function ArticlePage({ params }: ArticleProps) {
 
   const related = getRelatedPosts(post, 3);
 
+  /* Article schema — lets Google show author, date, and hero image in
+     SERP rich results. BreadcrumbList schema mirrors the visible trail. */
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    image: `${SITE_URL}${post.heroImage}`,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { "@type": "Person", name: post.author },
+    publisher: {
+      "@type": "Organization",
+      name: "Zero Waste Simplified",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+    },
+    mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
+    articleSection: post.category,
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Journal",
+        item: `${SITE_URL}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `${SITE_URL}/blog/${post.slug}`,
+      },
+    ],
+  };
+
   return (
     <div className="bg-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <ReadingProgress />
 
       <article>

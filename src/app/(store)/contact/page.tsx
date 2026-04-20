@@ -8,9 +8,11 @@ import { ContactForm } from "@/components/contact/contact-form";
 import { FaqAccordion, type FaqItem } from "@/components/contact/faq-accordion";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title:
+    "Contact Zero Waste Simplified | Natural Soap & Skincare, Cleveland OH",
   description:
-    "Reach our team for customer care, press, or wholesale inquiries. We respond within 24 hours, every weekday.",
+    "Contact our team about natural soap, organic skincare, natural shampoo, or wholesale. Shipping plastic-free to Cleveland, OH and across the US. Replies within 24 hours on weekdays.",
+  alternates: { canonical: "/contact" },
 };
 
 const CONTACT_CARDS = [
@@ -35,6 +37,10 @@ const CONTACT_CARDS = [
 ];
 
 const FAQS: FaqItem[] = [
+  {
+    q: "Do you ship natural soap and skincare to Cleveland, OH?",
+    a: "Yes. We ship our full range of natural soap, organic skincare, natural hair care, and natural shampoo to Cleveland, OH and every US zip code. Cleveland orders typically arrive in 2-4 business days via our nationwide carriers, shipped plastic-free in compostable kraft packaging.",
+  },
   {
     q: "How long does shipping take?",
     a: "Standard orders ship within 1-2 business days and arrive in 3-7 business days nationwide. We offer free shipping on orders over $40. International rates are calculated at checkout.",
@@ -69,14 +75,33 @@ const FAQS: FaqItem[] = [
   },
 ];
 
+/**
+ * FAQPage structured data — lets Google surface our FAQs as rich results.
+ * Generated from the same FAQS array the accordion renders, so edits to
+ * one automatically flow to the other.
+ */
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function ContactPage() {
   return (
     <div className="bg-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden bg-primary px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <Image
           src="/images/heroes/contact-hero.webp"
-          alt=""
+          alt="Contact Zero Waste Simplified — natural soap and skincare shipped to Cleveland, OH"
           fill
           sizes="100vw"
           className="object-cover"
@@ -94,8 +119,10 @@ export default function ContactPage() {
             Let&apos;s talk.
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-            We respond within 24 hours, every weekday. The fastest way to
-            reach us is the form below or any of the addresses on this page.
+            Questions about our natural soap, organic skincare, or natural
+            shampoo? We ship to Cleveland, OH and across the US and reply
+            within 24 hours on weekdays. Use the form below or any of the
+            addresses on this page.
           </p>
         </div>
       </section>
@@ -195,8 +222,10 @@ export default function ContactPage() {
                 Zero Waste Simplified
               </p>
               <p className="mt-2 text-[14px] leading-[1.75] text-white/65">
-                We&apos;re an online-only store, shipping plastic-free
-                across the US and select international destinations.
+                We&apos;re an online-only store shipping natural soap,
+                organic skincare, and natural hair care plastic-free to
+                Cleveland, OH and across the US, plus select international
+                destinations.
               </p>
               <p className="mt-4 text-[12px] leading-[1.6] text-white/40">
                 The fastest way to reach us is the form on this page or any

@@ -5,6 +5,7 @@
 // journal preview, and pledge CTA.
 // Server component that fetches products at request time.
 // Revalidates every 60 seconds (ISR).
+import type { Metadata } from "next";
 import { HeroVideo } from "@/components/home/hero-video";
 import { ImpactCounter } from "@/components/home/impact-counter";
 import { ShopByCategory } from "@/components/home/shop-by-category";
@@ -21,6 +22,15 @@ import { getProducts, getRegion } from "@/lib/medusa";
 import type { Product } from "@/lib/types";
 
 export const revalidate = 60;
+
+/** Home page — targets the full primary keyword cluster (soap, skincare, hair, shampoo + Cleveland, OH). */
+export const metadata: Metadata = {
+  title:
+    "Natural Soap, Organic Skincare & Artisan Hair Care | Zero Waste Simplified",
+  description:
+    "Shop natural soap, organic skincare, artisan hair care, and natural shampoo. Plastic-free, small-batch products shipped to Cleveland, OH and across the US.",
+  alternates: { canonical: "/" },
+};
 
 export default async function HomePage() {
   let products: Product[] = [];

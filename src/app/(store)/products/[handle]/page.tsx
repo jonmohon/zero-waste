@@ -37,7 +37,14 @@ export async function generateStaticParams() {
   }
 }
 
-/** Page metadata from Medusa product data */
+const SITE_URL = "https://zerowastesimplified.com";
+
+/**
+ * Builds page metadata from Medusa product data. Title appends the
+ * "Natural & Plastic-Free" tag so even brand-only product titles carry
+ * a generic keyword hit. Description falls back to a keyword-aware
+ * sentence when Medusa's description is empty.
+ */
 export async function generateMetadata({
   params,
 }: ProductPageProps): Promise<Metadata> {
@@ -48,9 +55,18 @@ export async function generateMetadata({
   const product = await getProductByHandle(handle, region.id) as Product | null;
   if (!product) return { title: "Product Not Found" };
 
+  const fallbackDescription = `${product.title} — a natural, plastic-free product from Zero Waste Simplified. Shipped to Cleveland, OH and across the US.`;
+
   return {
-    title: product.title,
-    description: product.description ?? undefined,
+    title: `${product.title} — Natural & Plastic-Free`,
+    description: product.description ?? fallbackDescription,
+    alternates: { canonical: `/products/${handle}` },
+    openGraph: {
+      type: "website",
+      title: product.title,
+      description: product.description ?? fallbackDescription,
+      images: product.thumbnail ? [product.thumbnail] : undefined,
+    },
   };
 }
 
@@ -95,8 +111,72 @@ export default async function ProductPage({ params }: ProductPageProps) {
     /* Graceful fallback — section simply won't show */
   }
 
+  /* Product + Breadcrumb JSON-LD. Product schema enables rich results
+     (price, availability, image); BreadcrumbList mirrors the visible
+     trail so Google shows the full hierarchy in the SERP. */
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.title,
+    description: product.description ?? undefined,
+    image:
+      product.images && product.images.length > 0
+        ? product.images.map((img) => img.url)
+        : product.thumbnail
+          ? [product.thumbnail]
+          : undefined,
+    url: `${SITE_URL}/products/${handle}`,
+    brand: { "@type": "Brand", name: "Zero Waste Simplified" },
+    ...(cheapestVariant?.calculated_price && {
+      offers: {
+        "@type": "Offer",
+        price: (
+          cheapestVariant.calculated_price.calculated_amount / 100
+        ).toFixed(2),
+        priceCurrency: (
+          cheapestVariant.calculated_price.currency_code ?? "usd"
+        ).toUpperCase(),
+        availability: "https://schema.org/InStock",
+        url: `${SITE_URL}/products/${handle}`,
+        areaServed: {
+          "@type": "City",
+          name: "Cleveland",
+          containedInPlace: "Ohio",
+        },
+      },
+    }),
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Collections",
+        item: `${SITE_URL}/collections`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: product.title,
+        item: `${SITE_URL}/products/${handle}`,
+      },
+    ],
+  };
+
   return (
     <div className="bg-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* Breadcrumb */}
       <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
         <nav className="flex items-center gap-2 text-[13px] text-text-secondary">

@@ -48,10 +48,12 @@ export function HeroVideo() {
         {/* Accent line */}
         <div className="mt-8 h-[3px] w-16 animate-fade-in rounded-full bg-gradient-to-r from-accent to-blue" />
 
-        {/* Subtitle */}
+        {/* Subtitle — includes the primary keyword cluster so the hero
+            carries SEO weight alongside the brand tagline H1. */}
         <p className="mt-8 max-w-xl animate-fade-up text-base leading-relaxed text-white/70 sm:text-lg md:text-xl md:leading-relaxed">
-          Sustainable everyday products, ships in compostable packaging,
-          curated for people making the swap to plastic-free living.
+          Natural soap, organic skincare, and artisan hair care &mdash;
+          plastic-free, small-batch, and shipped to Cleveland, OH and across
+          the US in compostable packaging.
         </p>
 
         {/* CTA buttons */}
