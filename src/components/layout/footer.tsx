@@ -1,13 +1,13 @@
 /**
  * Footer — site-wide footer rendered on every page via the root layout.
- * Premium footer with refined typography, newsletter CTA, social links,
- * and trust messaging matching the brand aesthetic.
+ * Four-column grid (brand, quick links, info, newsletter) collapsing to
+ * two columns on tablet and one on mobile. Copyright bar at the bottom.
  *
  * Server component — no client JS needed.
  */
 import Link from "next/link";
+import { FooterNewsletter } from "./footer-newsletter";
 
-/** Quick links displayed in the footer navigation */
 const QUICK_LINKS = [
   { label: "All Products", href: "/collections" },
   { label: "Bar Soap", href: "/collections/bar-soap" },
@@ -18,7 +18,6 @@ const QUICK_LINKS = [
   { label: "Bath & Body", href: "/collections/bath-%26-body" },
 ] as const;
 
-/** Info links displayed in the footer */
 const INFO_LINKS = [
   { label: "About Us", href: "/about" },
   { label: "Journal", href: "/blog" },
@@ -29,21 +28,19 @@ const INFO_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="bg-primary">
-      {/* Main footer content */}
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+    <footer className="bg-primary text-white">
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-16 lg:py-20 xl:px-20">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {/* Brand column */}
           <div className="sm:col-span-2 lg:col-span-1">
             <p className="font-serif text-2xl font-bold italic text-white">
               The Zero Waste Store
             </p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
               Saving the planet, one eco product at a time. Every purchase
               makes a difference.
             </p>
 
-            {/* Social icons */}
             <div className="mt-6 flex gap-3">
               <SocialLink label="Instagram" href="#">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
@@ -59,7 +56,7 @@ export function Footer() {
 
           {/* Quick links */}
           <div>
-            <h3 className="font-heading text-[11px] font-bold uppercase tracking-[0.15em] text-white/70">
+            <h3 className="font-heading text-xs font-bold uppercase tracking-[0.15em] text-white">
               Quick Links
             </h3>
             <nav className="mt-5 flex flex-col gap-3">
@@ -67,7 +64,7 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-white/45 transition-colors duration-200 hover:text-white"
+                  className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -77,7 +74,7 @@ export function Footer() {
 
           {/* Info links */}
           <div>
-            <h3 className="font-heading text-[11px] font-bold uppercase tracking-[0.15em] text-white/70">
+            <h3 className="font-heading text-xs font-bold uppercase tracking-[0.15em] text-white">
               Information
             </h3>
             <nav className="mt-5 flex flex-col gap-3">
@@ -85,7 +82,7 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-white/45 transition-colors duration-200 hover:text-white"
+                  className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -95,57 +92,41 @@ export function Footer() {
 
           {/* Stay connected */}
           <div>
-            <h3 className="font-heading text-[11px] font-bold uppercase tracking-[0.15em] text-white/70">
+            <h3 className="font-heading text-xs font-bold uppercase tracking-[0.15em] text-white">
               Stay Connected
             </h3>
-            <p className="mt-5 text-sm leading-relaxed text-white/45">
+            <p className="mt-5 text-sm leading-relaxed text-white/60">
               Subscribe for eco tips, new arrivals, and exclusive offers.
             </p>
 
-            {/* Newsletter mini form (visual only) */}
-            <div className="mt-4 flex overflow-hidden rounded-xl bg-white/8">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="flex-1 bg-transparent px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none"
-              />
-              <button
-                type="button"
-                className="shrink-0 bg-accent px-4 py-3 font-heading text-[10px] font-bold uppercase tracking-wider text-white transition-colors duration-200 hover:bg-accent-hover"
-              >
-                Join
-              </button>
-            </div>
+            <FooterNewsletter />
 
-            {/* Trust badges */}
-            <div className="mt-6 flex flex-col gap-2 text-[11px] text-white/35">
-              <span className="flex items-center gap-2">
+            <ul className="mt-6 flex flex-col gap-2 text-xs text-white/50">
+              <li className="flex items-center gap-2">
                 <span className="text-accent">&#10003;</span>
                 100% plastic-free shipping
-              </span>
-              <span className="flex items-center gap-2">
+              </li>
+              <li className="flex items-center gap-2">
                 <span className="text-accent">&#10003;</span>
                 Carbon-neutral delivery
-              </span>
-              <span className="flex items-center gap-2">
+              </li>
+              <li className="flex items-center gap-2">
                 <span className="text-accent">&#10003;</span>
                 30-day return guarantee
-              </span>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
 
       {/* Copyright bar */}
-      <div className="border-t border-white/8">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 sm:flex-row sm:px-6 lg:px-8">
-          <p className="text-xs text-white/30">
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-white/40 sm:flex-row sm:px-8 lg:px-16 xl:px-20">
+          <p>
             &copy; {new Date().getFullYear()} The Zero Waste Store. All rights
             reserved.
           </p>
-          <p className="text-xs text-white/20">
-            Made with care for the planet.
-          </p>
+          <p>Made with care for the planet.</p>
         </div>
       </div>
     </footer>
@@ -153,8 +134,7 @@ export function Footer() {
 }
 
 /**
- * SocialLink — small circular social media icon button for the footer.
- * Renders an accessible link with an SVG icon on a subtle white background.
+ * SocialLink — circular icon button for social media links in the footer.
  */
 function SocialLink({
   label,
@@ -168,7 +148,7 @@ function SocialLink({
   return (
     <a
       href={href}
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-white/8 text-white/50 transition-all duration-200 hover:bg-accent hover:text-white"
+      className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 transition-colors duration-200 hover:bg-accent hover:text-white"
       aria-label={label}
     >
       <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
