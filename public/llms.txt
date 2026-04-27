@@ -1,0 +1,46 @@
+# The Zero Waste Store — Sustainable Products
+
+Shop sustainable, zero-waste products for everyday living. Saving the planet, one eco product at a time.
+
+## General Information
+
+- [About](https://zerowastesimplified.com/about): Learn about the mission and values of The Zero Waste Store, focusing on sustainability and eco-friendly practices.
+- [Contact](https://zerowastesimplified.com/contact): Get in touch with The Zero Waste Store for inquiries, support, or feedback.
+- [Sign In](https://zerowastesimplified.com/signin): Access your account to manage orders, preferences, and personal information.
+- [Shipping & Returns](https://zerowastesimplified.com/shipping): Understand the policies regarding shipping and returns for your purchases.
+- [Privacy Policy](https://zerowastesimplified.com/privacy): Review the privacy practices and how your data is handled by The Zero Waste Store.
+
+## Blog
+
+- [Blog](https://zerowastesimplified.com/blog): Explore articles and insights on sustainability, eco-friendly living, and product recommendations.
+
+### Sustainability Articles
+
+- [5 Easy Swaps to Cut Plastic from Your Bathroom](https://zerowastesimplified.com/blog/5-easy-swaps-to-cut-plastic-from-your-bathroom): Discover five simple changes to reduce plastic waste in your bathroom, addressing the significant plastic footprint of this space. (Published April 9, 2026)
+- [Why We Refuse to Ship Anything in Plastic](https://zerowastesimplified.com/blog/why-we-refuse-to-ship-anything-in-plastic): An explanation of the decision to avoid plastic in shipping, including the cost implications and the behind-the-scenes processes involved. (Published March 22, 2026)
+
+### Hair Care
+
+- [A Beginner's Guide to Bar Shampoo](https://zerowastesimplified.com/blog/a-beginners-guide-to-bar-shampoo): A comprehensive guide on selecting the right bar shampoo for your hair type, proper lathering techniques, and tips for the adjustment period. (Published March 8, 2026)
+
+## Shop
+
+- [Shop Now](https://zerowastesimplified.com/collections): Browse the full range of sustainable products available for purchase.
+- [Bar Soap](https://zerowastesimplified.com/collections/bar-soap): Explore various eco-friendly bar soaps designed for effective cleansing without waste.
+- [Hair Care](https://zerowastesimplified.com/collections/hair-care): Find sustainable hair care products that are gentle on both your hair and the environment.
+- [Skin Care](https://zerowastesimplified.com/collections/skin-care): Discover skin care items that prioritize natural ingredients and minimal packaging.
+- [Oral Care](https://zerowastesimplified.com/collections/oral-care): Shop for eco-friendly oral care products that help reduce plastic waste.
+- [Food Wraps](https://zerowastesimplified.com/collections/food-wraps): Purchase reusable food wraps as an alternative to single-use plastic wraps.
+- [Bath & Body](https://zerowastesimplified.com/collections/bath-%26-body): Browse a selection of bath and body products that are sustainable and effective.
+
+## Featured Products
+
+- [Gentleman's Handmade Soap Bar VEGAN COLD PROCESS](https://zerowastesimplified.com/products/gentlemans-handmade-soap-bar-vegan-cold-process): A vegan soap bar priced at $8.50, crafted using cold process methods.
+- [Organic Lip Balm - Sweet Orange](https://zerowastesimplified.com/products/organic-lip-balm-sweet-orange): A nourishing lip balm available for $9.95, made with organic ingredients.
+- [Bamboo Soap Shelf](https://zerowastesimplified.com/products/moso-bamboo-soap-shelf): A sustainable bamboo soap shelf priced at $8.98, perfect for organizing your eco-friendly products.
+- [Vegan Lip Balm - Coastal Berry](https://zerowastesimplified.com/products/vegan-lip-balm-coastal-berry): A $9.95 vegan lip balm with a refreshing coastal berry flavor.
+- [Mango Sea Salt & Kukui Exfoliating Loofah Soap 4.75oz](https://zerowastesimplified.com/products/mango-sea-salt-kukui-exfoliating-loofah-soap-4-75oz): An exfoliating soap bar available for $9.75, combining mango and kukui for a tropical experience.
+- [HiBAR Curl Shampoo Bar](https://zerowastesimplified.com/products/hibar-curl-shampoo-bar): A specialized shampoo bar for curly hair, priced at $13.95.
+- [Moisturizing Vegan Body Wash - Aloe & Coconut Milk](https://zerowastesimplified.com/products/moisturizing-vegan-body-wash-aloe-coconut-milk): A hydrating body wash available for $5.98, featuring aloe and coconut milk.
+- [Maui Kiss Sea Salt & Kukui Exfoliating Loofah Soap 4.75oz](https://zerowastesimplified.com/products/maui-kiss-sea-salt-kukui-exfoliating-loofah-soap-4-75oz): Another exfoliating soap option for $9.75, inspired by tropical ingredients.
+- [Adult Bamboo Toothbrush](https://zerowastesimplified.com/products/adult-toothbrush-standard-soft): A sustainable bamboo toothbrush priced at $6.00, designed to reduce plastic waste in oral care.

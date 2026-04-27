@@ -2,6 +2,7 @@
 // Header and Footer are server components rendered once per navigation.
 // Uses Cormorant Garamond, Montserrat, and Open Sans loaded via next/font/google.
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Cormorant_Garamond, Montserrat, Open_Sans } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -63,6 +64,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  /**
+   * Search engine ownership verification.
+   * Google Search Console: NlRCma-QPHPizXa1cnn38U0SI01Yy3Qh_m_O7zby3bQ
+   * Bing Webmaster Tools: 497566C831E8FDD23DCD2BA9EE408E24
+   * Both rendered as <meta> tags by Next.js.
+   */
+  verification: {
+    google: "NlRCma-QPHPizXa1cnn38U0SI01Yy3Qh_m_O7zby3bQ",
+    other: {
+      "msvalidate.01": "497566C831E8FDD23DCD2BA9EE408E24",
+    },
+  },
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -98,6 +111,49 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
+};
+
+/**
+ * LocalBusiness schema — physical storefront in Oberlin, OH plus phone,
+ * hours, and geo coordinates. Provided by the SEO team and emitted on
+ * every page alongside the broader Organization schema below.
+ */
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "The Zero Waste Store",
+  image:
+    "https://zerowastesimplified.com/_next/image?url=%2Fimages%2Flogo.webp&w=256&q=75",
+  url: "https://zerowastesimplified.com/",
+  telephone: "7725292380",
+  priceRange: "$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "47981 West Hamilton Street",
+    addressLocality: "Oberlin",
+    addressRegion: "OH",
+    postalCode: "44074",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 41.2799796,
+    longitude: -82.259168,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "10:00",
+      closes: "14:00",
+    },
+  ],
 };
 
 /**
@@ -152,6 +208,31 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+        />
+
+        {/* Google Analytics 4 — provided by Alpha SEO. Property G-K47GJL37MR. */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-K47GJL37MR"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-K47GJL37MR');
+          `}
+        </Script>
+
+        {/* Crazy Egg heatmap — provided by Alpha SEO. Account 0022/1041. */}
+        <Script
+          src="https://script.crazyegg.com/pages/scripts/0022/1041.js"
+          strategy="afterInteractive"
+        />
+
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

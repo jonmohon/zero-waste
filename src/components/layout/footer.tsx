@@ -24,6 +24,7 @@ const INFO_LINKS = [
   { label: "Contact", href: "/contact" },
   { label: "Shipping & Returns", href: "/shipping" },
   { label: "Privacy Policy", href: "/privacy" },
+  { label: "Sitemap", href: "/sitemap" },
 ] as const;
 
 export function Footer() {
